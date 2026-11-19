@@ -34,6 +34,8 @@ Please file a bug if you notice a violation of semantic versioning.
   `jruby`). Review each entry and pick a resolution per the project's own
   engine support needs.
 
+- Sponsor badge library: config loader, checksum-gated deterministic SVG renderer (desktop and phone), linked <picture> markup, central logos.galtzo.com URLs with local fallback, opt-in `--verify`, `kettle-sponsors` CLI, and a kettle-jem plugin
+
 ### Changed
 
 - [kc] kettle-jem/prepare: updated 2 project files:
