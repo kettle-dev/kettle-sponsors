@@ -40,9 +40,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 2 project files:
+- [kc] kettle-jem/prepare: updated 6 project files:
   - configuration (1)
-  - dependencies (1)
+  - dependencies (5)
 
 - kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only
   files, reducing package noise for downstream packagers.

@@ -30,7 +30,7 @@ RSpec.describe Kettle::Sponsors do
         expect { described_class.load(path) }.to raise_error(Kettle::Sponsors::Error, /collision/)
         File.write(path, "sponsors:\n  - name: A\n")
         expect(described_class.load(path).map(&:name)).to eq(["A"])
-        expect(described_class.load(File.join(dir, "missing.yml"))).to eq([])
+        expect(described_class.load(File.join(dir, "missing.yml"))).to be_empty
       end
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe Kettle::Sponsors do
       Dir.mktmpdir do |dir|
         first = described_class.render([gh, expired], out: dir, today: today)
         expect(first.map { |p| File.basename(p) }).to eq(%w[github.svg github.svg])
-        expect(described_class.render([gh, expired], out: dir, today: today)).to eq([])
+        expect(described_class.render([gh, expired], out: dir, today: today)).to be_empty
         expect(described_class.stale?([], out: dir, today: today)).to be(true)
         described_class.render([], out: dir, today: today)
         expect(Dir[File.join(dir, "**/*.svg")]).to be_empty
@@ -75,7 +75,10 @@ RSpec.describe Kettle::Sponsors do
     it "checks only active central sponsors" do
       local = Kettle::Sponsors::Sponsor.from_h("name" => "Loc", "badge" => "local")
       seen = []
-      result = described_class.verify([gh, expired, local], today: today, http: ->(u) { seen << u; true })
+      result = described_class.verify([gh, expired, local], today: today, http: ->(u) {
+        seen << u
+        true
+      })
       expect(seen.size).to eq(2)
       expect(result.values).to all(be(true))
     end

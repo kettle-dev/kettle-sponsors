@@ -2,8 +2,7 @@
   "Rakefile:326413418": [
     [151, 1, 30, "Rake/DuplicateTask: Task `default` is defined at both Rakefile:12 and Rakefile:151.", 2613343392]
   ],
-  "spec/kettle/sponsors_spec.rb:1501834994": [
-    [9, 12, 5, "RSpec/ExpectActual: Provide the actual value you are testing to `expect(...)`.", 170962968],
-    [9, 22, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+  "spec/kettle/sponsors/library_spec.rb:2656124328": [
+    [6, 1, 31, "RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.", 2751346313]
   ]
 }
