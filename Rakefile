@@ -6,7 +6,6 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-require "bundler/gem_tasks"
 # Define a base default task early so other files can enhance it.
 desc "Default tasks aggregator"
 task :default do
@@ -140,12 +139,3 @@ rescue LoadError
     warn("NOTE: stone_checksums isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
   end
 end
-require "rspec/core/rake_task"
-
-RSpec::Core::RakeTask.new(:spec)
-
-require "rubocop/rake_task"
-
-RuboCop::RakeTask.new
-
-task default: %i[spec rubocop]

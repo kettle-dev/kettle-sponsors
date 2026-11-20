@@ -78,10 +78,6 @@ Gem::Specification.new do |spec|
     # Executables and executable support scripts
     *enumerate_package_files.call("exe")
   ]
-  # kettle-jem:freeze
-  # Keep locally built native binaries out of release packages.
-  spec.files.reject! { |path| path.end_with?(".bundle", ".so", ".dylib", ".dll", ".o", ".a") }
-  # kettle-jem:unfreeze
   spec.rdoc_options += [
     "--title",
     "#{spec.name} - #{spec.summary}",
@@ -96,6 +92,12 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+
+  # kettle-jem:freeze
+  # Keep locally built native binaries out of release packages.
+  spec.files.reject! { |path| path.end_with?(".bundle", ".so", ".dylib", ".dll", ".o", ".a") }
+  # kettle-jem:unfreeze
+
   spec.require_paths = ["lib"]
 
   # Utilities
@@ -115,7 +117,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.31")             # ruby >= 3.2.0
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.26")             # ruby >= 3.2.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
