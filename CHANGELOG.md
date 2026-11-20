@@ -36,6 +36,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Sponsor badge library: config loader, checksum-gated deterministic SVG renderer (desktop and phone), linked <picture> markup, central logos.galtzo.com URLs with local fallback, opt-in `--verify`, `kettle-sponsors` CLI, and a kettle-jem plugin
 
+- `kettle-sponsors publish --from PATH --registry PATH` merges sponsors by slug into a central registry file (deterministic, idempotent)
+
 ### Changed
 
 - [kc] kettle-jem/prepare: updated 2 project files:

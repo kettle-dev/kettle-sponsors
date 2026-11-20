@@ -124,3 +124,47 @@ RSpec.describe Kettle::Sponsors::Verifier do
     expect(described_class.head("https://logos.galtzo.com/x.svg")).to be(false)
   end
 end
+
+RSpec.describe Kettle::Sponsors::Registry do
+  def write(path, yaml)
+    File.write(path, yaml)
+  end
+
+  it "merges by slug (incoming wins), keeps registry-only entries, sorts, and is idempotent" do
+    Dir.mktmpdir do |dir|
+      from = File.join(dir, "family.yml")
+      reg = File.join(dir, "sub", "sponsors.yml")
+      write(from, "readme:\n  corporate_sponsors:\n    - name: GitHub\n      target_href: https://github.com\n      image_src: https://x/y.png\n      until: 2027-01-01\n")
+      FileUtils.mkdir_p(File.dirname(reg))
+      write(reg, "sponsors:\n  - name: Zeta\n    target_href: https://z.example\n  - name: GitHub\n    target_href: https://old.example\n")
+
+      expect(described_class.publish(from: from, registry: reg)).to be(true)
+      sponsors = Kettle::Sponsors::Config.load(reg)
+      expect(sponsors.map(&:slug)).to eq(%w[github zeta])
+      expect(sponsors.first.href).to eq("https://github.com")
+      expect(sponsors.first.until_date).to eq(Date.new(2027, 1, 1))
+      expect(File.read(reg)).not_to include("image_src")
+      expect(described_class.publish(from: from, registry: reg)).to be(false)
+    end
+  end
+
+  it "refuses an empty source" do
+    Dir.mktmpdir do |dir|
+      from = File.join(dir, "e.yml")
+      File.write(from, "{}\n")
+      expect { described_class.publish(from: from, registry: File.join(dir, "r.yml")) }.to raise_error(Kettle::Sponsors::Error)
+    end
+  end
+
+  it "is driven by the CLI publish subcommand" do
+    Dir.mktmpdir do |dir|
+      from = File.join(dir, "f.yml")
+      reg = File.join(dir, "r.yml")
+      File.write(from, "corporate_sponsors:\n  - name: A\n    url: https://a.example\n")
+      io = StringIO.new
+      expect(Kettle::Sponsors::CLI.new(["publish", "--from", from, "--registry", reg], out: io).run).to eq(0)
+      expect(io.string).to include("registry updated")
+      expect(Kettle::Sponsors::CLI.new(["publish"], out: io).run).to eq(2)
+    end
+  end
+end

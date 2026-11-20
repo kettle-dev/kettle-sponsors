@@ -25,6 +25,7 @@ module Kettle
     autoload :BadgeRenderer, "kettle/sponsors/badge_renderer"
     autoload :Markup, "kettle/sponsors/markup"
     autoload :Renderer, "kettle/sponsors/renderer"
+    autoload :Registry, "kettle/sponsors/registry"
     autoload :Verifier, "kettle/sponsors/verifier"
     autoload :CLI, "kettle/sponsors/cli"
     autoload :Plugin, "kettle/sponsors/plugin"

@@ -16,7 +16,8 @@ module Kettle
         return [] unless File.file?(path)
 
         data = YAML.safe_load_file(path, permitted_classes: [Date], aliases: true) || {}
-        entries = data["sponsors"] || data.dig("readme", "corporate_sponsors")
+        entries = data["sponsors"] || data.dig("readme", "corporate_sponsors") ||
+          data.dig("sponsorships", "corporate") || data["corporate_sponsors"]
         sponsors = Array(entries).map { |entry| Sponsor.from_h(entry) }
         dupes = sponsors.group_by(&:slug).select { |_, list| list.size > 1 }.keys
         raise Error, "sponsor slug collision: #{dupes.join(", ")}" unless dupes.empty?

@@ -5,6 +5,7 @@ require "optparse"
 module Kettle
   module Sponsors
     # kettle-sponsors [--config PATH] [--out DIR] [--check | --verify] [--force]
+    # kettle-sponsors publish --from PATH --registry PATH
     class CLI
       def initialize(argv, out: $stdout)
         @argv = argv
@@ -13,11 +14,16 @@ module Kettle
         @dir = LOCAL_DIR
         @mode = :render
         @force = false
+        @from = nil
+        @registry = nil
       end
 
       # @return [Integer] exit status. With --check: 0 when badges are current, 1 when stale.
       def run
+        @mode = :publish if @argv.first == "publish" && @argv.shift
         parser.parse!(@argv)
+        return publish if @mode == :publish
+
         sponsors = Config.load(@config)
         case @mode
         when :check then check(sponsors)
@@ -30,6 +36,14 @@ module Kettle
       end
 
       private
+
+      def publish
+        raise Error, "publish requires --from and --registry" unless @from && @registry
+
+        changed = Registry.publish(from: File.expand_path(@from), registry: File.expand_path(@registry))
+        @out.puts(changed ? "registry updated: #{@registry}" : "registry unchanged")
+        0
+      end
 
       def check(sponsors)
         stale = Renderer.stale?(sponsors, out: @dir)
@@ -56,6 +70,8 @@ module Kettle
           o.on("--out DIR", "output directory (default #{LOCAL_DIR})") { |v| @dir = v }
           o.on("--check", "exit 1 if badges are stale, 0 if current") { @mode = :check }
           o.on("--verify", "HEAD-check central badge URLs (network)") { @mode = :verify }
+          o.on("--from PATH", "publish: source config with sponsors") { |v| @from = v }
+          o.on("--registry PATH", "publish: registry file to merge into") { |v| @registry = v }
           o.on("--force", "render even when unchanged") { @force = true }
         end
       end

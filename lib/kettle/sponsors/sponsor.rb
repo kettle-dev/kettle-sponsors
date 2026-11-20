@@ -56,6 +56,15 @@ module Kettle
         }
       end
 
+      # Registry form: the keys Config reads back, nils and blanks omitted.
+      def to_registry_h
+        {
+          "name" => name, "target_href" => href, "since" => since&.iso8601,
+          "until" => until_date&.iso8601, "description" => description,
+          "badge" => (badge unless badge == "central")
+        }.reject { |_, v| v.nil? || v == "" }
+      end
+
       private
 
       def parse_date(value)
