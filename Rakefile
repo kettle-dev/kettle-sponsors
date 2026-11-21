@@ -6,6 +6,58 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
+# kettle-sponsors Rakefile v7.1.42 - 2026-11-21
+# Ruby 2.3 (Safe Navigation) or higher required
+#
+# See LICENSE.md for license information.
+#
+# Copyright (c) 2026 Peter H. Boling (galtzo.com)
+#
+# Expected to work in any project that uses Bundler.
+#
+# Sets up tasks for appraisal2, floss_funding, kettle-jem, kettle-dev, rspec, minitest, rubocop_gradual, reek, yard, and stone_checksums.
+#
+# rake appraisal:install                      # Install Appraisal gemfiles (initial setup...
+# rake appraisal:reset                        # Delete Appraisal lockfiles (gemfiles/*.gemfile.lock)
+# rake appraisal:generate                     # Generate Appraisal gemfiles without resolving...
+# rake appraisal:update                       # Generate and update Appraisal gemfiles
+# rake bench                                  # Run all benchmarks (alias for bench:run)
+# rake bench:list                             # List available benchmark scripts
+# rake bench:run                              # Run all benchmark scripts (skips on CI)
+# rake build:generate_checksums               # Generate both SHA256 & SHA512 checksums i...
+# rake bundle:audit:check                     # Checks the Gemfile.lock for insecure depe...
+# rake bundle:audit:update                    # Updates the bundler-audit vulnerability d...
+# rake ci:act[opt]                            # Run 'act' with a selected workflow
+# rake coverage                               # Run specs w/ coverage and open results in...
+# rake default                                # Default tasks aggregator
+# rake install                                # Build and install kettle-sponsors-1.0.0.gem in...
+# rake install:local                          # Build and install kettle-sponsors-1.0.0.gem in...
+# rake kettle:jem:install                     # Internal target used by `kettle-jem install`
+# rake kettle:jem:selftest                    # Self-test: template kettle-sponsors against itse...
+# rake kettle:jem:template                    # Internal target used by scoped `kettle-jem template --only`
+# rake reek                                   # Check for code smells
+# rake reek:update                            # Run reek and store the output into the RE...
+# rake release[remote]                        # Create tag v1.0.0 and build and push kett...
+# rake rubocop_gradual                        # Run RuboCop Gradual
+# rake rubocop_gradual:autocorrect            # Run RuboCop Gradual with autocorrect (onl...
+# rake rubocop_gradual:autocorrect_all        # Run RuboCop Gradual with autocorrect (saf...
+# rake rubocop_gradual:check                  # Run RuboCop Gradual to check the lock file
+# rake rubocop_gradual:force_update           # Run RuboCop Gradual to force update the l...
+# rake rubocop_gradual_debug                  # Run RuboCop Gradual
+# rake rubocop_gradual_debug:autocorrect      # Run RuboCop Gradual with autocorrect (onl...
+# rake rubocop_gradual_debug:autocorrect_all  # Run RuboCop Gradual with autocorrect (saf...
+# rake rubocop_gradual_debug:check            # Run RuboCop Gradual to check the lock file
+# rake rubocop_gradual_debug:force_update     # Run RuboCop Gradual to force update the l...
+# rake spec                                   # Run RSpec code examples
+# rake test                                   # Run tests
+# rake yard                                   # Generate YARD Documentation
+# rake yard:lint                              # Lint YARD Documentation
+#
+
+# simplecov:disable
+require "bundler/gem_tasks" if !Dir[File.join(__dir__, "*.gemspec")].empty?
+# simplecov:enable
+
 # Define a base default task early so other files can enhance it.
 desc "Default tasks aggregator"
 task :default do

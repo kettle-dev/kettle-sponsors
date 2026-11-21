@@ -494,7 +494,7 @@ yard_host: "kettle-sponsors.galtzo.com"
 # Full URL used for gemspec metadata["homepage_uri"].
 # Defaults to https://kettle-sponsors.galtzo.com.
 # ENV override: KJ_HOMEPAGE_URI
-homepage_uri: "TODO: Put your gem's website or public repo URL here."
+homepage_uri: "https://kettle-sponsors.galtzo.com"
 
 # Template source inventory.
 # The packaged inventory is the canonical kettle-jem project template. It

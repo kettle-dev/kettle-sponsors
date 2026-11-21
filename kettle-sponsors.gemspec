@@ -12,8 +12,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
-  spec.summary = "💎 TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "💎 TODO: Write a longer description or delete this line."
+  spec.summary = "💎 Sponsor badges for kettle-jem managed projects"
+  spec.description = "💎 Renders, verifies, and publishes sponsor badges (central or locally hosted SVGs) for kettle-jem and kettle-family managed project READMEs."
   spec.homepage = "https://github.com/kettle-dev/kettle-sponsors"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 3.2.0"
@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.metadata["homepage_uri"] = "TODO: Put your gem's website or public repo URL here."
+  spec.metadata["homepage_uri"] = "https://kettle-sponsors.galtzo.com"
   spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
