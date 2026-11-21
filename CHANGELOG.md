@@ -20,6 +20,26 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.0] - 2026-11-20
+
+- TAG: [v0.1.0][0.1.0t]
+- COVERAGE: 96.84% -- 245/253 lines in 12 files
+- BRANCH COVERAGE: 78.87% -- 56/71 branches in 12 files
+- 68.42% documented
+- Initial release
+
+### Added
+
 - kettle-jem-template-20260720-005 - README Support & Community links now
   include RubyForum.
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -66,10 +86,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (42)
   - workflows (22)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
@@ -109,8 +125,6 @@ Please file a bug if you notice a violation of semantic versioning.
   setup-ruby Bundler install path for direct appraisal Gemfiles, avoiding rv
   lockfile parser failures on Git and path dependencies.
 
-### Security
-
-## [0.1.0] - 2026-11-18
-
-- Initial release
+[Unreleased]: https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/kettle-dev/kettle-sponsors/compare/76b3a01f826cb55ef42436774feacc1991c66971...v0.1.0
+[0.1.0t]: https://github.com/kettle-dev/kettle-sponsors/releases/tag/v0.1.0
