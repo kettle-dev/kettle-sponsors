@@ -5,15 +5,21 @@ require "json"
 
 module Kettle
   module Sponsors
-    # Checksum of only the active sponsors, so unrelated config edits and
-    # expired sponsors are accounted for exactly once.
+    # Checksum of only the active sponsors (and optional theme), so unrelated
+    # config edits and expired sponsors are accounted for exactly once.
     module Checksum
       FILENAME = ".checksum"
 
       module_function
 
-      def compute(sponsors, today: Date.today)
-        payload = sponsors.select { |s| s.active?(today) }.map(&:to_h)
+      # @param sponsors [Array<Sponsor>]
+      # @param today [Date]
+      # @param theme [Theme, nil]
+      # @param _options [Hash] forward-compatible options
+      # @return [String] hex SHA-256 digest
+      def compute(sponsors, today: Date.today, theme: nil, **_options)
+        active = sponsors.select { |s| s.active?(today) }.map(&:to_h)
+        payload = theme ? {"sponsors" => active, "theme" => theme.to_h} : active
         Digest::SHA256.hexdigest(JSON.generate(payload))
       end
 

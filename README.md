@@ -21,18 +21,30 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
-`Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and `kettle-family` managed project READMEs.
+`Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges (cards and Shields.io-style small pills) for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and `kettle-family` managed project READMEs.
+
+### Example Output
+
+Generated from a sample sponsor configuration using `kettle-sponsors` (SVGs hosted in `docs/images/`):
+
+**Responsive sponsor cards** (hybrid desktop/phone layout, embedded logos, contribution kinds, and optional kind-specific animations; switches automatically to `docs/images/phone/` below `600px`):
+
+<a href="https://acme.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/acme-corp.svg"><img src="docs/images/acme-corp.svg" align="top" alt="Sponsor: Acme Corp - Cloud infrastructure"></picture></a> <a href="https://northwind.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/northwind-labs.svg"><img src="docs/images/northwind-labs.svg" align="top" alt="Sponsor: Northwind Labs - Automated build pipelines and CI runners for open source"></picture></a> <picture><source media="(max-width: 600px)" srcset="docs/images/phone/cedar-pine.svg"><img src="docs/images/cedar-pine.svg" align="top" alt="Sponsor: Cedar &amp; Pine - Core maintainer hours"></picture> <a href="https://beacon.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/beacon-oss.svg"><img src="docs/images/beacon-oss.svg" align="top" alt="Sponsor: Beacon OSS"></picture></a>
+
+**Small badge parade** (single-line Shields.io-style offline SVGs for the top of a README):
+
+<a href="https://acme.example"><img src="docs/images/shield/acme-corp.svg" alt="sponsor: Acme Corp"></a> <a href="https://northwind.example"><img src="docs/images/shield/northwind-labs.svg" alt="compute: Northwind Labs"></a> <img src="docs/images/shield/cedar-pine.svg" alt="eng time: Cedar &amp; Pine"> <a href="https://beacon.example"><img src="docs/images/shield/beacon-oss.svg" alt="services: Beacon OSS"></a>
 
 Key features:
 
-- **Central hosting by default, local opt-in** — Badges default to the central host (`https://logos.galtzo.com/assets/images/sponsors`) so individual repositories do not need to commit SVG assets. Any sponsor marked `badge: local` is rendered directly into the project (`docs/assets/images/sponsors`).
-- **Deterministic SVG generation** — Produces desktop and compact mobile (`phone/`) dark-themed SVG badges where identical inputs always produce identical bytes.
-- **Checksum-gated rendering** — Tracks active sponsors with a SHA-256 `.checksum` file, skipping work when nothing changed and pruning SVGs for removed or expired sponsors.
-- **Date-windowed sponsorships** — Supports inclusive `since` and `until` dates so sponsors automatically appear and expire on schedule.
-- **Responsive README markup** — Generates linked `<picture>` elements (`<source media="(max-width: 600px)">` + `<img>`) concatenated without whitespace so badges tile cleanly in a grid.
-- **Central registry publishing** — Merges project or family sponsor definitions into a central YAML registry deterministically and idempotently (`kettle-sponsors publish`).
-- **Opt-in URL verification** — `HEAD`-checks active central badge URLs on demand (`kettle-sponsors --verify`) without making network calls during templating.
-- **`kettle-jem` plugin** — Hooks into `after_phase(:remaining_files)` to keep locally hosted badges up to date during templating.
+- **Embedded sponsor logos (offline or remote fetch)** — Base64-embeds local files (`.svg`, `.png`, `.jpg`, `.webp`) or `data:` URIs directly inside each SVG so logos render reliably inside GitHub README `<img>` tags, with opt-in cached remote HTTP(S) fetching (`fetch_logos: true` / `--fetch-logos`).
+- **Financial & in-kind sponsorship kinds** — Supports `financial` (default), `compute`, `time` (`Engineer time`), and `services` with crisp inline vector iconography.
+- **Hybrid responsive cards** — Desktop badges display a left logo tile plus inline icon and label (`Financial · since 2026-01`); compact mobile (`phone/`) badges switch to a top-right icon-only pill and truncate long descriptions at 40 characters.
+- **Shields.io-style small badges** — Renders offline SVG pills matching all five canonical Shields.io styles (`flat`, `flat-square`, `plastic`, `for-the-badge`, `social`) for top-of-README badge parades.
+- **Configurable theme, colors & subsetted fonts** — Customize background, border, text, muted, description, logo tile backdrop, kind accents, metallic coin palette (`gold` / `silver`), CSS font stack (defaulting to `pboling/pboling`'s stack), and optional `pyftsubset`-subsetted embedded `@font-face` fonts.
+- **Kind-specific CSS animations** — Optional `hover` or `always` animations (`financial` 3D metallic coins, `compute` ECG heartbeat pulse, `time` glowing keyboard, `services` interlocking gears), honoring `prefers-reduced-motion`.
+- **Central hosting by default, local opt-in** — Serves from `https://logos.galtzo.com/assets/images/sponsors` by default, or renders locally into `docs/assets/images/sponsors` for `badge: local` sponsors.
+- **Checksum-gated & date-windowed** — Tracks active sponsors and theme settings via `.checksum`, supports inclusive `since`/`until` windows, publishes deterministically to central registries (`kettle-sponsors publish`), verifies URLs on demand (`--verify`), and integrates as a `kettle-jem` plugin.
 
 ## 💡 Info you can shake a stick at
 
@@ -126,24 +138,42 @@ plugins:
   - kettle-sponsors
 ```
 
-During bundled templating, `kettle-jem` calls `Kettle::Sponsors.register_kettle_jem_plugin(registrar)`, registering an `after_phase(:remaining_files)` hook. For any sponsor configured with `badge: local`, the plugin renders its desktop and phone SVGs into `docs/assets/images/sponsors` and records the generated files with `kettle-jem`. Central badges (`badge: central`, the default) require no local files because they are referenced by URL.
+During bundled templating, `kettle-jem` calls `Kettle::Sponsors.register_kettle_jem_plugin(registrar)`, registering an `after_phase(:remaining_files)` hook. For any sponsor configured with `badge: local`, the plugin renders its desktop, phone, and shield SVGs into `docs/assets/images/sponsors` using any configured `readme.sponsor_theme` and records the generated files with `kettle-jem`. Central badges (`badge: central`, the default) require no local files because they are referenced by URL.
 
 ### Defining Sponsors
 
-Define sponsors under `readme.corporate_sponsors` in `.structuredmerge/kettle-jem.yml`:
+Define sponsors under `readme.corporate_sponsors` (and optional theme settings under `readme.sponsor_theme`) in `.structuredmerge/kettle-jem.yml`:
 
 ```yaml
 readme:
+  sponsor_theme:
+    animate: always
+    coin_metal: gold
   corporate_sponsors:
-    - name: GitHub
-      target_href: https://github.com
-      since: 2026-08-29
-      description: Copilot Max
-    - name: Example Corp
-      target_href: https://example.com
-      since: 2026-01-01
-      until: 2026-12-31
-      description: Infrastructure partner
+    - name: Acme Corp
+      target_href: https://acme.example
+      logo: docs/images/logos/acme-corp.svg
+      since: 2026-01-15
+      description: Cloud infrastructure
+      kind: financial
+      badge: local
+    - name: Northwind Labs
+      target_href: https://northwind.example
+      logo: docs/images/logos/northwind-labs.svg
+      since: 2026-06-01
+      description: Automated build pipelines and CI runners for open source
+      kind: compute
+      badge: local
+    - name: Cedar & Pine
+      logo: docs/images/logos/cedar-pine.svg
+      since: 2026-03-01
+      description: Core maintainer hours
+      kind: time
+      badge: local
+    - name: Beacon OSS
+      target_href: https://beacon.example
+      logo: docs/images/logos/beacon-oss.svg
+      kind: services
       badge: local
 ```
 
@@ -152,11 +182,80 @@ readme:
 | Field | Required | Default | Description |
 |-------|----------|---------|-------------|
 | `name` | Yes | — | Sponsor display name (non-empty). Normalized to a lowercase hyphenated slug; duplicate slugs raise `Kettle::Sponsors::Error`. |
-| `target_href` (alias: `url`) | No | `""` | Destination link URL. When set, must use `http://` or `https://`. When omitted, markup renders `<picture>` without an `<a>` wrapper. |
-| `since` | No | `nil` | First active date (inclusive, ISO 8601 `YYYY-MM-DD`). Displayed on the badge as `since YYYY-MM` (falls back to `sponsor` when omitted). |
+| `target_href` (alias: `url`) | No | `""` | Destination link URL (`http://` or `https://`). When omitted, markup renders `<picture>` / `<img>` without an `<a>` wrapper. |
+| `logo` (aliases: `image_src`, `img_src`) | No | `nil` | Local image path (`.svg`, `.png`, `.jpg`, `.webp`), `data:image/...` URI, or `http(s)://` URL (fetched only when `fetch_logos: true`). Embedded as a `data:` URI inside the SVG. |
+| `kind` | No | `"financial"` | Sponsorship type: `"financial"` (`Financial`), `"compute"` (`Compute`), `"time"` (`Engineer time`), or `"services"` (`Services`). Controls the icon, label, accent color, and animation motif. |
+| `since` | No | `nil` | First active date (inclusive, ISO 8601 `YYYY-MM-DD`). Displayed as `since YYYY-MM` (falls back to `sponsor` when omitted). |
 | `until` | No | `nil` | Last active date (inclusive, ISO 8601 `YYYY-MM-DD`). Expired sponsors are excluded from markup, checksums, and verification, and their rendered SVGs are pruned. |
-| `description` | No | `""` | Short tagline rendered on the badge (truncated to 40 characters + `…` on the `phone` variant) and appended to the `alt` attribute. |
+| `description` | No | `""` | Short tagline rendered on the third line (truncated to 40 characters + `…` on `:phone`) and appended to the `alt` attribute. |
+| `label` | No | kind short label | Optional custom left-side label for Shields.io-style small badges (defaults to `sponsor`, `compute`, `eng time`, or `services`). |
+| `color` | No | kind accent | Optional per-sponsor right-side color override for Shields.io-style small badges. |
+| `logo_background` | No | theme `logo_background` | Optional per-sponsor logo tile backdrop color (e.g., `"#ffffff"` or `"transparent"`). |
 | `badge` | No | `"central"` | Hosting mode: `"central"` serves SVGs from `Kettle::Sponsors::CENTRAL_BASE`; `"local"` renders SVGs into `Kettle::Sponsors::LOCAL_DIR`. |
+
+#### Badge Variations by Kind & Field
+
+| Variation | Effect on Rendered Badge | Rendered Desktop SVG |
+|-----------|--------------------------|----------------------|
+| `kind: financial` + logo + `since` + `description` | 3-line card with embedded logo, Financial icon, and 3D gold coin stack motif | ![Acme Corp](docs/images/acme-corp.svg) |
+| `kind: compute` + logo + long `description` (`> 40` chars) | Auto-widens on desktop with ECG heartbeat sparkline; truncates with `…` on `:phone` | ![Northwind Labs](docs/images/northwind-labs.svg) |
+| `kind: time` + logo + `&` in name, no `target_href` | XML-escaped name, glowing keyboard motif, rendered without an `<a>` wrapper | ![Cedar & Pine](docs/images/cedar-pine.svg) |
+| `kind: services` + logo, no `since` or `description` | Compact 2-line card (`52px` tall) with `"sponsor"` subtitle and interlocking gears | ![Beacon OSS](docs/images/beacon-oss.svg) |
+| No `logo` configured (`animate: none`) | Clean text-only fallback with no empty left padding | ![Minimal Co](docs/images/examples/no-logo.svg) |
+
+### Theme, Colors, Fonts & Animations
+
+Configure global visual defaults under `readme.sponsor_theme` (or top-level `sponsor_theme:` / `theme:` in standalone registries):
+
+```yaml
+readme:
+  sponsor_theme:
+    background: "#14211f"
+    border: "#25403c"
+    text: "#f4efe4"
+    muted: "#8fa6a1"
+    description: "#c8d6d3"
+    logo_background: "#ffffff"
+    coin_metal: silver
+    label_color: "#555555"
+    font: "system-ui,-apple-system,'Segoe UI',Roboto,sans-serif"
+    font_file: assets/fonts/Inter-Regular.ttf
+    animate: hover
+    shield_style: flat
+    fetch_logos: false
+    logo_cache: tmp/sponsor-logos
+    accents:
+      financial: "#3fb950"
+      compute: "#58a6ff"
+      time: "#d2a8ff"
+      services: "#f0883e"
+```
+
+Example custom theme (`sm-urb-design` dark-teal palette with `coin_metal: silver`):
+
+![Custom themed badge with silver coins](docs/images/examples/themed-silver.svg)
+
+#### Theme Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `background` | `"#0d1117"` | Card background fill color. |
+| `border` | `"#30363d"` | Card border stroke color. |
+| `text` | `"#f0f6fc"` | Sponsor display name text color. |
+| `muted` | `"#8b949e"` | Subtitle / metadata (`kind · since`) text color. |
+| `description` | `"#c9d1d9"` | Description line text color. |
+| `logo_background` | `"#ffffff"` | Rounded tile backdrop behind sponsor logos so dark wordmarks stay legible on dark cards; set to `"transparent"` or `"none"` to disable. |
+| `accents` | `{financial: "#3fb950", compute: "#58a6ff", time: "#d2a8ff", services: "#f0883e"}` | Per-kind icon, animation, and default Shields right-side accent colors. |
+| `coin_metal` | `"gold"` | Metallic 3D coin palette for `financial` animations: `"gold"` or `"silver"`. |
+| `label_color` | `"#555555"` | Left-side label fill color for Shields.io-style small badges. |
+| `color` | `nil` | Global right-side color override for Shields.io-style small badges (defaults to each sponsor's kind accent). |
+| `font` | `"system-ui,-apple-system,'Segoe UI',Roboto,sans-serif"` | CSS `font-family` stack (matches `pboling/pboling`'s SVG font stack). |
+| `font_file` | `nil` | Optional path to a `.ttf`, `.otf`, `.woff`, or `.woff2` file. When set, `FontSubsetter` invokes `pyftsubset` (from `fonttools`, if on `PATH`) to subset the font to only the unique characters used in each SVG and embeds `@font-face` as a base64 `data:` URI (falling back to embedding the full source font if `pyftsubset` is unavailable). |
+| `font_family` | sanitized `font_file` basename | Custom `@font-face` family name when `font_file` is set. |
+| `animate` | `"none"` | Kind-specific animation mode: `"none"`, `"hover"` (triggers on `svg:hover` — works for inline SVGs / `<object>` web embeds), or `"always"` (runs continuously — works inside GitHub README `<img>` tags, where browsers disable `:hover`). All animations honor `prefers-reduced-motion: reduce`. |
+| `shield_style` | `"flat"` | Small badge style matching Shields.io: `"flat"`, `"flat-square"`, `"plastic"`, `"for-the-badge"`, or `"social"`. |
+| `fetch_logos` | `false` | Offline by default (local files and `data:` URIs only). Set `true` (or pass `--fetch-logos`) to download and embed remote `http(s)://` logos. |
+| `logo_cache` | `nil` | Optional directory used to cache downloaded remote logos across runs. |
 
 #### Supported Config File Formats
 
@@ -167,16 +266,16 @@ readme:
 3. `sponsorships.corporate` — alternate nested format
 4. `corporate_sponsors` — top-level shorthand
 
-If `path` does not exist, `Config.load` returns `[]`.
+`Kettle::Sponsors::Config.load_theme(path)` reads `readme.sponsor_theme`, `sponsor_theme`, or `theme`. If `path` does not exist, `Config.load` returns `[]` and `Config.load_theme` returns default `Theme.new`.
 
 #### Defaults & Constants
 
 | Constant | Default Value | Purpose |
 |----------|---------------|---------|
 | `Kettle::Sponsors::CONFIG_PATH` | `".structuredmerge/kettle-jem.yml"` | Default config path for the CLI and `kettle-jem` plugin. |
-| `Kettle::Sponsors::LOCAL_DIR` | `"docs/assets/images/sponsors"` | Default output directory for locally rendered SVGs and `.checksum`. |
-| `Kettle::Sponsors::CENTRAL_BASE` | `"https://logos.galtzo.com/assets/images/sponsors"` | Base URL for centrally hosted desktop and `phone/` SVGs. |
-| `Kettle::Sponsors::Checksum::FILENAME` | `".checksum"` | File written inside the output directory storing the active-sponsor SHA-256 digest. |
+| `Kettle::Sponsors::LOCAL_DIR` | `"docs/assets/images/sponsors"` | Default output directory for locally rendered desktop, `phone/`, and `shield/` SVGs plus `.checksum`. |
+| `Kettle::Sponsors::CENTRAL_BASE` | `"https://logos.galtzo.com/assets/images/sponsors"` | Base URL for centrally hosted desktop, `phone/`, and `shield/` SVGs. |
+| `Kettle::Sponsors::Checksum::FILENAME` | `".checksum"` | File written inside the output directory storing the active-sponsor and theme SHA-256 digest. |
 
 ## 🔧 Basic Usage
 
@@ -186,23 +285,23 @@ The `kettle-sponsors` executable manages rendering, freshness checks, URL verifi
 
 #### Render Badges
 
-Render desktop (`<out>/<slug>.svg`) and mobile (`<out>/phone/<slug>.svg`) SVGs for all active sponsors in the config file:
+Render desktop (`<out>/<slug>.svg`), mobile (`<out>/phone/<slug>.svg`), and Shields-style small (`<out>/shield/<slug>.svg`) SVGs for all active sponsors in the config file:
 
 ```console
 bundle exec kettle-sponsors
 ```
 
-Customize the input config, output directory, or force re-rendering even when `.checksum` is unchanged:
+Customize options from the CLI (overriding any values in the config file):
 
 ```console
-bundle exec kettle-sponsors --config sponsors.yml --out docs/assets/images/sponsors --force
+bundle exec kettle-sponsors --config sponsors.yml --out docs/assets/images/sponsors --fetch-logos --animate always --shield-style for-the-badge --force
 ```
 
 Stale SVGs from removed or expired sponsors are deleted automatically so the output directory stays in sync with active sponsors.
 
 #### Check Freshness
 
-Verify whether rendered badges match the current active sponsors (useful in CI):
+Verify whether rendered badges match the current active sponsors and theme (useful in CI):
 
 ```console
 bundle exec kettle-sponsors --check
@@ -228,7 +327,7 @@ Merge sponsors from a project or family config into a central registry YAML file
 bundle exec kettle-sponsors publish --from .structuredmerge/kettle-jem.yml --registry path/to/sponsors.yml
 ```
 
-Entries are merged by slug (incoming wins), registry-only entries are preserved, output is sorted by slug, and `nil`/blank fields and the default `badge: central` are omitted. Repeated runs with no changes are a no-op (`registry unchanged`).
+Entries are merged by slug (incoming wins), registry-only entries are preserved, output is sorted by slug, and `nil`/blank fields plus default `badge: central` / `kind: financial` are omitted. Repeated runs with no changes are a no-op (`registry unchanged`).
 
 #### CLI Options & Exit Codes
 
@@ -241,6 +340,12 @@ Usage: kettle-sponsors [options]
         --from PATH                  publish: source config with sponsors
         --registry PATH              publish: registry file to merge into
         --force                      render even when unchanged
+        --fetch-logos                fetch remote http(s) logo URLs and embed them
+        --animate MODE               animation mode: none, hover, always
+        --shield-style STYLE         small badge style: flat, flat-square, plastic, for-the-badge, social
+        --font STACK                 CSS font-family stack
+        --font-file PATH             font file to subset via pyftsubset and embed
+        --coin-metal METAL           financial coin style: gold, silver
 ```
 
 - Exit `0`: Success (rendered, up to date, all verified URLs reachable, or registry published).
@@ -249,44 +354,68 @@ Usage: kettle-sponsors [options]
 
 ### Ruby API
 
-#### Load Sponsors and Build README Markup
+#### Load Sponsors & Theme and Build README Markup
 
 ```ruby
 require "kettle/sponsors"
 
-sponsors = Kettle::Sponsors::Config.load(".structuredmerge/kettle-jem.yml")
+loaded   = Kettle::Sponsors::Config.load_all(".structuredmerge/kettle-jem.yml")
+sponsors = loaded[:sponsors]
+theme    = loaded[:theme]
 
-# Generate concatenated responsive <a href><picture>...</picture></a> markup for active sponsors
-html = Kettle::Sponsors::Markup.badges(sponsors)
+# Responsive <a href><picture>...</picture></a> card grid for active sponsors
+cards_html = Kettle::Sponsors::Markup.badges(sponsors, width: "25%", today: Date.today)
 
-# Override base paths, image width, or evaluation date
-html = Kettle::Sponsors::Markup.badges(
-  sponsors,
-  central_base: Kettle::Sponsors::CENTRAL_BASE,
-  local_base: Kettle::Sponsors::LOCAL_DIR,
-  width: "25%",
-  today: Date.today
-)
+# Single-line Shields.io-style badge parade for top-of-README
+parade_html = Kettle::Sponsors::Markup.shields(sponsors, today: Date.today)
 ```
 
-Each active sponsor renders as:
+#### Hybrid Desktop vs. Phone Variants
 
-```html
-<a href="https://github.com"><picture><source media="(max-width: 600px)" srcset="https://logos.galtzo.com/assets/images/sponsors/phone/github.svg"><img src="https://logos.galtzo.com/assets/images/sponsors/github.svg" width="25%" align="top" alt="Sponsor: GitHub - Copilot Max"></picture></a>
-```
+`Kettle::Sponsors::BadgeRenderer.svg` uses a hybrid layout: `:desktop` shows the inline kind icon + label on the metadata line and optional right-side animation motif, while `:phone` switches to a compact card with a top-right icon-only corner pill and 40-character description truncation:
+
+| Sponsor | `:desktop` (inline icon & label + motif) | `:phone` (compact + icon corner pill) |
+|---------|------------------------------------------|---------------------------------------|
+| **Acme Corp** (`financial`) | ![Acme Corp desktop](docs/images/acme-corp.svg) | ![Acme Corp phone](docs/images/phone/acme-corp.svg) |
+| **Northwind Labs** (`compute`) | ![Northwind Labs desktop](docs/images/northwind-labs.svg) | ![Northwind Labs phone](docs/images/phone/northwind-labs.svg) |
+| **Cedar & Pine** (`time`) | ![Cedar & Pine desktop](docs/images/cedar-pine.svg) | ![Cedar & Pine phone](docs/images/phone/cedar-pine.svg) |
+| **Beacon OSS** (`services`) | ![Beacon OSS desktop](docs/images/beacon-oss.svg) | ![Beacon OSS phone](docs/images/phone/beacon-oss.svg) |
+
+#### Small Badge Parade — All 5 Shields.io Styles
+
+`Kettle::Sponsors::ShieldRenderer.svg` (or `BadgeRenderer.svg(sponsor, variant: :shield)`) renders all five canonical Shields.io styles offline with embedded logos:
+
+| `shield_style` | Rendered SVG |
+|----------------|--------------|
+| `flat` (default, `20px`, rounded + gradient) | ![flat shield](docs/images/examples/shield-flat.svg) |
+| `flat-square` (`20px`, crisp square edges) | ![flat-square shield](docs/images/examples/shield-flat-square.svg) |
+| `plastic` (`18px`, glossy highlight) | ![plastic shield](docs/images/examples/shield-plastic.svg) |
+| `for-the-badge` (`28px`, bold uppercase) | ![for-the-badge shield](docs/images/examples/shield-for-the-badge.svg) |
+| `social` (`20px`, light pill + speech callout) | ![social shield](docs/images/examples/shield-social.svg) |
 
 #### Render SVGs Programmatically
 
 ```ruby
-# Render a single SVG string (:desktop or :phone)
-desktop_svg = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :desktop)
-phone_svg   = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :phone)
+theme = Kettle::Sponsors::Theme.new(
+  background: "#14211f",
+  border: "#25403c",
+  text: "#f4efe4",
+  coin_metal: "silver",
+  animate: "hover",
+  shield_style: "for-the-badge",
+  fetch_logos: false
+)
 
-# Render active sponsors to disk (returns array of written paths, or [] if unchanged)
-written = Kettle::Sponsors::Renderer.render(sponsors, out: Kettle::Sponsors::LOCAL_DIR)
+# Render individual SVG strings (:desktop, :phone, or :shield)
+desktop_svg = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :desktop, theme: theme, base_dir: Dir.pwd)
+phone_svg   = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :phone, theme: theme, base_dir: Dir.pwd)
+shield_svg  = Kettle::Sponsors::ShieldRenderer.svg(sponsors.first, style: "flat-square", theme: theme, base_dir: Dir.pwd)
+
+# Render active sponsors to disk (desktop, phone/, and shield/; empty array if unchanged)
+written = Kettle::Sponsors::Renderer.render(sponsors, out: Kettle::Sponsors::LOCAL_DIR, theme: theme, base_dir: Dir.pwd)
 
 # Check if output directory is out of date
-stale = Kettle::Sponsors::Renderer.stale?(sponsors, out: Kettle::Sponsors::LOCAL_DIR)
+stale = Kettle::Sponsors::Renderer.stale?(sponsors, out: Kettle::Sponsors::LOCAL_DIR, theme: theme)
 ```
 
 #### Publish and Verify Programmatically
