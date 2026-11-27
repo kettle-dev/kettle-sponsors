@@ -21,7 +21,7 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
-`Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges (cards and Shields.io-style small pills) for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and `kettle-family` managed project READMEs.
+`Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges (cards and Shields.io-style small pills) for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and [kettle-family](https://github.com/kettle-dev/kettle-family) managed project READMEs.
 
 ### Example Output
 
