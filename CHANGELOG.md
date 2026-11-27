@@ -20,6 +20,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Embedded sponsor logo support (`logo` / `image_src` / `img_src`) via `Kettle::Sponsors::LogoLoader`: offline local file & `data:` URI base64 embedding by default, with opt-in cached remote HTTP(S) fetching (`fetch_logos: true` / `--fetch-logos`).
+- Sponsorship `kind` support (`financial` default, `compute`, `time`, `services`) with crisp inline SVG vector icons (`Kettle::Sponsors::Icons`) and hybrid desktop (icon + label) / phone (top-right icon pill) layouts.
+- Configurable badge theme (`Kettle::Sponsors::Theme`, `readme.sponsor_theme`): `background`, `border`, `text`, `muted`, `description`, `logo_background`, per-kind `accents`, `coin_metal` (`gold` / `silver`), `label_color`, `color`, CSS `font` stack (defaulting to `pboling/pboling`'s stack), and optional `font_file` character subsetting via `pyftsubset` (`Kettle::Sponsors::FontSubsetter`).
+- Compact single-line Shields.io-style offline SVG badges (`Kettle::Sponsors::ShieldRenderer`, `Markup.shield` / `Markup.shields`, `<out>/shield/<slug>.svg`) supporting all five canonical styles (`flat`, `flat-square`, `plastic`, `for-the-badge`, `social`).
+- Kind-specific CSS animations (`Kettle::Sponsors::Animations`, `animate: none | hover | always`, honoring `prefers-reduced-motion`): 3D metallic gold/silver coins (`financial`), ECG heartbeat sparkline (`compute`), glowing keyboard (`time`), and interlocking gears (`services`).
+
 ### Changed
 
 - [kc] kettle-jem/prepare: updated 13 project files since the last release:

@@ -1,6 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="364" height="54" viewBox="0 0 364 54" role="img" aria-label="Northwind Labs, since 2026-06, Automated build pipelines and CI runners for open source">
-  <rect x=".5" y=".5" width="363" height="53" rx="6" fill="#0d1117" stroke="#30363d"/>
-  <text x="14" y="18" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#f0f6fc">Northwind Labs</text>
-  <text x="14" y="32" font-family="system-ui,sans-serif" font-size="10" fill="#8b949e">since 2026-06</text>
-  <text x="14" y="46" font-family="system-ui,sans-serif" font-size="10" fill="#c9d1d9">Automated build pipelines and CI runners for open source</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="524" height="64" viewBox="0 0 524 64" role="img" aria-label="Northwind Labs, Compute, since 2026-06, Automated build pipelines and CI runners for open source">
+  <defs><filter id="nglow" x="-35%" y="-60%" width="170%" height="220%"><feGaussianBlur in="SourceGraphic" stdDeviation="1.1" result="a"/><feGaussianBlur in="SourceGraphic" stdDeviation="2.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="a"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <style>.ks-ecg-pulse{stroke-dasharray:34 150;stroke-dashoffset:184;opacity:0;transition:opacity .35s ease-out}
+.ks-ecg-dot{opacity:0;transition:opacity .35s ease-out}
+svg .ks-ecg-pulse{opacity:1;animation:ks-ecg 1.8s linear infinite}
+svg .ks-ecg-dot{opacity:1;animation:ks-dot 1.8s ease-in-out infinite}
+@keyframes ks-ecg{0%{stroke-dashoffset:184}100%{stroke-dashoffset:0}}
+@keyframes ks-dot{0%,100%{opacity:.25;r:1.5}45%{opacity:1;r:2.6}}
+@media (prefers-reduced-motion:reduce){.ks-ecg-pulse,.ks-ecg-dot{animation:none!important;opacity:0}}</style>
+  <rect x=".5" y=".5" width="523" height="63" rx="6" fill="#0d1117" stroke="#30363d"/>
+  <g>
+  <path d="M432 37 L448 37 L454 32 L459 43 L466 17 L473 49 L479 33 L485 37 L516 37" fill="none" stroke="#58a6ff" stroke-width="1.2" opacity="0.35" stroke-linejoin="round" stroke-linecap="round"/>
+  <path class="ks-ecg-pulse" d="M432 37 L448 37 L454 32 L459 43 L466 17 L473 49 L479 33 L485 37 L516 37" fill="none" stroke="#58a6ff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" filter="url(#nglow)"/>
+  <circle class="ks-ecg-dot" cx="466" cy="17" r="2" fill="#58a6ff" filter="url(#nglow)"/>
+</g>
+  <rect x="11" y="14" width="36" height="36" rx="7" fill="#ffffff"/>
+  <image x="15" y="18" width="28" height="28" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgPHBhdGggZD0iTTEyIDJMMTUuMiA4LjhMMjIgMTJMMTUuMiAxNS4yTDEyIDIyTDguOCAxNS4yTDIgMTJMOC44IDguOEwxMiAyWiIgZmlsbD0iIzAyODRjNyIvPgogIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjIuNCIgZmlsbD0iI2ZmZmZmZiIvPgo8L3N2Zz4K" preserveAspectRatio="xMidYMid meet"/>
+  <text x="58" y="21" font-family="system-ui,-apple-system,&#39;Segoe UI&#39;,Roboto,sans-serif" font-size="14" font-weight="700" fill="#f0f6fc">Northwind Labs</text>
+  <g transform="translate(58,26.5)"><rect x="3" y="3" width="6" height="6" rx="1" fill="none" stroke="#58a6ff" stroke-width="1.15"/><path d="M4.5 1v2M7.5 1v2M4.5 9v2M7.5 9v2M1 4.5h2M1 7.5h2M9 4.5h2M9 7.5h2" stroke="#58a6ff" stroke-width="1.15" stroke-linecap="round"/></g>
+  <text x="74" y="36" font-family="system-ui,-apple-system,&#39;Segoe UI&#39;,Roboto,sans-serif" font-size="10.5" fill="#8b949e">Compute · since 2026-06</text>
+  <text x="58" y="52" font-family="system-ui,-apple-system,&#39;Segoe UI&#39;,Roboto,sans-serif" font-size="10.5" fill="#c9d1d9">Automated build pipelines and CI runners for open source</text>
 </svg>

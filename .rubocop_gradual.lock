@@ -1,5 +1,5 @@
 {
-  "spec/kettle/sponsors/library_spec.rb:2656124328": [
-    [6, 1, 31, "RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.", 2751346313]
+  "spec/kettle/sponsors/library_spec.rb:214119678": [
+    [6, 1, 31, "RSpec/SpecFilePathFormat: Spec path should end with `kettle/sponsors*_spec.rb`.", 2751346313]
   ]
 }

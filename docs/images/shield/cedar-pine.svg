@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="173" height="20" viewBox="0 0 173 20" role="img" aria-label="eng time: Cedar &amp; Pine">
+  <title>eng time: Cedar &amp; Pine</title>
+  <linearGradient id="ks-sh-s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="ks-sh-r"><rect width="173" height="20" rx="3" fill="#fff"/></clipPath>
+  <g clip-path="url(#ks-sh-r)">
+    <rect width="84" height="20" fill="#555555"/>
+    <rect x="84" width="89" height="20" fill="#d2a8ff"/>
+    <rect width="173" height="20" fill="url(#ks-sh-s)"/>
+  </g>
+  <rect x="4" y="3" width="14" height="14" rx="2" fill="#ffffff"/><image x="5.7" y="4.7" width="10.6" height="10.6" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgPHBhdGggZD0iTTEyIDJMMTguNSAxMUgxNUwxOS41IDE3LjVIMTMuNVYyMkgxMC41VjE3LjVINC41TDkgMTFINS41TDEyIDJaIiBmaWxsPSIjMDU5NjY5Ii8+Cjwvc3ZnPgo=" preserveAspectRatio="xMidYMid meet"/><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="11">
+    <text x="52" y="15" fill="#010101" fill-opacity=".3">eng time</text>
+    <text x="52" y="14">eng time</text>
+    <text x="128.5" y="15" fill="#010101" fill-opacity=".3">Cedar &amp; Pine</text>
+    <text x="128.5" y="14">Cedar &amp; Pine</text>
+  </g>
+</svg>
