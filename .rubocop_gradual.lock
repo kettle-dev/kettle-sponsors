@@ -1,7 +1,4 @@
 {
-  "gemfiles/modular/style_local.gemfile:3800591096": [
-    [71, 23, 20, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 1851388465]
-  ],
   "spec/kettle/sponsors/library_spec.rb:2656124328": [
     [6, 1, 31, "RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.", 2751346313]
   ]

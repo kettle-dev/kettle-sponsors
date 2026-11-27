@@ -654,7 +654,7 @@ Thanks for RTFM. ☺️
 | Field | Value |
 |---|---|
 | Package | kettle-sponsors |
-| Description | Renders, verifies, and publishes sponsor badges (central or locally hosted SVGs) for kettle-jem and kettle-family managed project READMEs. |
+| Description | 💎 Renders, verifies, and publishes sponsor badges (central or locally hosted SVGs) for kettle-jem and kettle-family managed project READMEs. |
 | Homepage | https://github.com/kettle-dev/kettle-sponsors |
 | Source | https://github.com/kettle-dev/kettle-sponsors |
 | License | `MIT` |
