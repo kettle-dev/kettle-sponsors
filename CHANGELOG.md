@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.1] - 2026-11-27
+
+- TAG: [v0.1.1][0.1.1t]
+- COVERAGE: 96.37% -- 717/744 lines in 18 files
+- BRANCH COVERAGE: 80.32% -- 200/249 branches in 18 files
+- 59.62% documented
+
+### Added
+
 - Embedded sponsor logo support (`logo` / `image_src` / `img_src`) via `Kettle::Sponsors::LogoLoader`: offline local file & `data:` URI base64 embedding by default, with opt-in cached remote HTTP(S) fetching (`fetch_logos: true` / `--fetch-logos`).
 - Sponsorship `kind` support (`financial` default, `compute`, `time`, `services`) with crisp inline SVG vector icons (`Kettle::Sponsors::Icons`) and hybrid desktop (icon + label) / phone (top-right icon pill) layouts.
 - Configurable badge theme (`Kettle::Sponsors::Theme`, `readme.sponsor_theme`): `background`, `border`, `text`, `muted`, `description`, `logo_background`, per-kind `accents`, `coin_metal` (`gold` / `silver`), `label_color`, `color`, CSS `font` stack (defaulting to `pboling/pboling`'s stack), and optional `font_file` character subsetting via `pyftsubset` (`Kettle::Sponsors::FontSubsetter`).
@@ -37,15 +56,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (4)
   - workflows (3)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Completed the user-managed `README.md` sections (`Synopsis`, `Configuration`, and `Basic Usage`) documenting `kettle-jem` plugin setup, sponsor configuration options, CLI usage, the Ruby API, and generated SVG badge examples hosted in `docs/images/`.
-
-### Security
 
 ## [0.1.0] - 2026-11-26
 
@@ -142,6 +155,8 @@ Please file a bug if you notice a violation of semantic versioning.
   setup-ruby Bundler install path for direct appraisal Gemfiles, avoiding rv
   lockfile parser failures on Git and path dependencies.
 
-[Unreleased]: https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.0...v0.1.1
+[0.1.1t]: https://github.com/kettle-dev/kettle-sponsors/releases/tag/v0.1.1
 [0.1.0]: https://github.com/kettle-dev/kettle-sponsors/compare/76b3a01f826cb55ef42436774feacc1991c66971...v0.1.0
 [0.1.0t]: https://github.com/kettle-dev/kettle-sponsors/releases/tag/v0.1.0

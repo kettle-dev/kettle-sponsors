@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Kettle::Sponsors::Animations
+  
+    &mdash; Documentation by YARD 0.9.46
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "Kettle::Sponsors::Animations";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Kettle.html" title="Kettle (module)">Kettle</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Sponsors.html" title="Kettle::Sponsors (module)">Sponsors</a></span></span>
+     &raquo; 
+    <span class="title">Animations</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Kettle::Sponsors::Animations
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/kettle/sponsors/animations.rb
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Kind-specific SVG background motifs and CSS animations for desktop badges.</p>
+
+<p>Supports +animate: “hover”+ (triggers on +svg:hover+, ideal for inline/object<br />
+web embeds) and +animate: “always”+ (subtle continuous loop that also plays<br />
+inside GitHub README +<img />+ tags). Always honors +prefers-reduced-motion+.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="NGLOW-constant" class="">NGLOW =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;filter id=&quot;nglow&quot; x=&quot;-35%&quot; y=&quot;-60%&quot; width=&quot;170%&quot; height=&quot;220%&quot;&gt;</span><span class='tstring_end'>&#39;</span></span> \
+<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.1&quot; result=&quot;a&quot;/&gt;</span><span class='tstring_end'>&#39;</span></span> \
+<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;2.8&quot; result=&quot;b&quot;/&gt;</span><span class='tstring_end'>&#39;</span></span> \
+<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;feMerge&gt;&lt;feMergeNode in=&quot;b&quot;/&gt;&lt;feMergeNode in=&quot;a&quot;/&gt;&lt;feMergeNode in=&quot;SourceGraphic&quot;/&gt;&lt;/feMerge&gt;</span><span class='tstring_end'>&#39;</span></span> \
+<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/filter&gt;</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="MOTIF_WIDTH-constant" class="">MOTIF_WIDTH =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Reserved width on the right side of the card when a motif is active.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>96</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-class_method" title="build (class method)">.<strong>build</strong>(kind, width:, height:, theme:, **_options)  &#x21d2; Hash{Symbol =&gt; String} </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Build +css:, body:+ for +kind+ inside a card of size +width+ x +height+.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#coin_3d-class_method" title="coin_3d (class method)">.<strong>coin_3d</strong>(cx, cy, rx, ry, thickness, pal, glow: false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Render a single 3D metallic coin (extruded cylinder edge + top ellipse + inner rim).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compute_motif-class_method" title="compute_motif (class method)">.<strong>compute_motif</strong>(width, height, theme)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#esc-class_method" title="esc (class method)">.<strong>esc</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#financial_motif-class_method" title="financial_motif (class method)">.<strong>financial_motif</strong>(width, height, theme)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gear_path-class_method" title="gear_path (class method)">.<strong>gear_path</strong>(cx, cy, outer:, inner:, hole:, teeth:)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Compute a crisp toothed gear polygon + center hub circle.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#services_motif-class_method" title="services_motif (class method)">.<strong>services_motif</strong>(width, height, theme)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#time_motif-class_method" title="time_motif (class method)">.<strong>time_motif</strong>(width, height, theme)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#trigger_prefix-class_method" title="trigger_prefix (class method)">.<strong>trigger_prefix</strong>(theme)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="build-class_method">
+  
+    .<strong>build</strong>(kind, width:, height:, theme:, **_options)  &#x21d2; <tt>Hash{Symbol =&gt; String}</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Build +css:, body:+ for +kind+ inside a card of size +width+ x +height+.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>kind</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>one of Sponsor::KINDS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>width</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>badge width</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>height</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>badge height</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>theme</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>_options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash{Symbol =&gt; String}</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='label'>width:</span><span class='comma'>,</span> <span class='label'>height:</span><span class='comma'>,</span> <span class='label'>theme:</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid__options'>_options</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='lbrace'>{</span><span class='label'>defs:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>css:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_animated?'>animated?</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_kind'>kind</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>compute</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>then</span> <span class='id identifier rubyid_compute_motif'>compute_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>then</span> <span class='id identifier rubyid_time_motif'>time_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>services</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>then</span> <span class='id identifier rubyid_services_motif'>services_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='kw'>else</span> <span class='id identifier rubyid_financial_motif'>financial_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="coin_3d-class_method">
+  
+    .<strong>coin_3d</strong>(cx, cy, rx, ry, thickness, pal, glow: false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Render a single 3D metallic coin (extruded cylinder edge + top ellipse + inner rim).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 213</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_cx'>cx</span><span class='comma'>,</span> <span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span> <span class='id identifier rubyid_rx'>rx</span><span class='comma'>,</span> <span class='id identifier rubyid_ry'>ry</span><span class='comma'>,</span> <span class='id identifier rubyid_thickness'>thickness</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='comma'>,</span> <span class='label'>glow:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_x_l'>x_l</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cx'>cx</span> <span class='op'>-</span> <span class='id identifier rubyid_rx'>rx</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_x_r'>x_r</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cx'>cx</span> <span class='op'>+</span> <span class='id identifier rubyid_rx'>rx</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_y_t'>y_t</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cy'>cy</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_y_b'>y_b</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cy'>cy</span> <span class='op'>+</span> <span class='id identifier rubyid_thickness'>thickness</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_rx_s'>rx_s</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_rx'>rx</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ry_s'>ry_s</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_ry'>ry</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_irx'>irx</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_rx'>rx</span> <span class='op'>*</span> <span class='float'>0.68</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iry'>iry</span> <span class='op'>=</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_ry'>ry</span> <span class='op'>*</span> <span class='float'>0.62</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_flt'>flt</span> <span class='op'>=</span> <span class='id identifier rubyid_glow'>glow</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> filter=&quot;url(#nglow)&quot;</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># Extruded milled cylinder wall + top metallic face + embossed inner ring + glint
+</span>  <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;g</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_flt'>flt</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
+    <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;path d=&quot;M</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x_l'>x_l</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_t'>y_t</span><span class='embexpr_end'>}</span><span class='tstring_content'> L</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x_l'>x_l</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_b'>y_b</span><span class='embexpr_end'>}</span><span class='tstring_content'> A</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rx_s'>rx_s</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ry_s'>ry_s</span><span class='embexpr_end'>}</span><span class='tstring_content'> 0 0 0 </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x_r'>x_r</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_b'>y_b</span><span class='embexpr_end'>}</span><span class='tstring_content'> L</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x_r'>x_r</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_t'>y_t</span><span class='embexpr_end'>}</span><span class='tstring_content'> Z&quot; fill=&quot;url(#ks-coin-rim)&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbol'>:stroke</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.55&quot;/&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
+    <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;ellipse cx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cx'>cx</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; cy=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_t'>y_t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; rx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rx_s'>rx_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; ry=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ry_s'>ry_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;url(#ks-coin-face)&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbol'>:stroke</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.55&quot;/&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
+    <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;ellipse cx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cx'>cx</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; cy=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_y_t'>y_t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; rx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_irx'>irx</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; ry=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_iry'>iry</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;none&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbol'>:rim_dark</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.45&quot; opacity=&quot;0.65&quot;/&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;/g&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compute_motif-class_method">
+  
+    .<strong>compute_motif</strong>(width, height, theme)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compute_motif'>compute_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accent'>accent</span> <span class='op'>=</span> <span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_accent_for'>accent_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>compute</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sel'>sel</span> <span class='op'>=</span> <span class='id identifier rubyid_trigger_prefix'>trigger_prefix</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mid'>mid</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_height'>height</span> <span class='op'>*</span> <span class='float'>0.58</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span>
+  <span class='id identifier rubyid_x0'>x0</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>92</span>
+  <span class='id identifier rubyid_pts'>pts</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+    <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>16</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>22</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span> <span class='op'>-</span> <span class='int'>5</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>27</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span> <span class='op'>+</span> <span class='int'>6</span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>34</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span> <span class='op'>-</span> <span class='int'>20</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>41</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span> <span class='op'>+</span> <span class='int'>12</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>47</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span> <span class='op'>-</span> <span class='int'>4</span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>53</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>8</span><span class='comma'>,</span> <span class='id identifier rubyid_mid'>mid</span><span class='rbracket'>]</span>
+  <span class='rbracket'>]</span>
+  <span class='id identifier rubyid_path_d'>path_d</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>M</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_pts'>pts</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_px'>px</span><span class='comma'>,</span> <span class='id identifier rubyid_py'>py</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_px'>px</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_py'>py</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> L</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_css'>css</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~CSS</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    .ks-ecg-pulse{stroke-dasharray:34 150;stroke-dashoffset:184;opacity:0;transition:opacity .35s ease-out}
+</span><span class='tstring_content'>    .ks-ecg-dot{opacity:0;transition:opacity .35s ease-out}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-ecg-pulse{opacity:1;animation:ks-ecg 1.8s linear infinite}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-ecg-dot{opacity:1;animation:ks-dot 1.8s ease-in-out infinite}
+</span><span class='tstring_content'>    @keyframes ks-ecg{0%{stroke-dashoffset:184}100%{stroke-dashoffset:0}}
+</span><span class='tstring_content'>    @keyframes ks-dot{0%,100%{opacity:.25;r:1.5}45%{opacity:1;r:2.6}}
+</span><span class='tstring_content'>    @media (prefers-reduced-motion:reduce){.ks-ecg-pulse,.ks-ecg-dot{animation:none!important;opacity:0}}
+</span><span class='heredoc_end'>  CSS
+</span>
+  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~SVG</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    &lt;g&gt;
+</span><span class='tstring_content'>      &lt;path d=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path_d'>path_d</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;none&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accent'>accent</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;1.2&quot; opacity=&quot;0.35&quot; stroke-linejoin=&quot;round&quot; stroke-linecap=&quot;round&quot;/&gt;
+</span><span class='tstring_content'>      &lt;path class=&quot;ks-ecg-pulse&quot; d=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path_d'>path_d</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;none&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accent'>accent</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;1.8&quot; stroke-linejoin=&quot;round&quot; stroke-linecap=&quot;round&quot; filter=&quot;url(#nglow)&quot;/&gt;
+</span><span class='tstring_content'>      &lt;circle class=&quot;ks-ecg-dot&quot; cx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>34</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; cy=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mid'>mid</span> <span class='op'>-</span> <span class='int'>20</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; r=&quot;2&quot; fill=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accent'>accent</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; filter=&quot;url(#nglow)&quot;/&gt;
+</span><span class='tstring_content'>    &lt;/g&gt;
+</span><span class='heredoc_end'>  SVG
+</span>
+  <span class='lbrace'>{</span><span class='label'>defs:</span> <span class='const'><span class='object_link'><a href="#NGLOW-constant" title="Kettle::Sponsors::Animations::NGLOW (constant)">NGLOW</a></span></span><span class='comma'>,</span> <span class='label'>css:</span> <span class='id identifier rubyid_css'>css</span><span class='comma'>,</span> <span class='label'>body:</span> <span class='id identifier rubyid_body'>body</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="esc-class_method">
+  
+    .<strong>esc</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+250
+251
+252</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 250</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escapeHTML'>escapeHTML</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="financial_motif-class_method">
+  
+    .<strong>financial_motif</strong>(width, height, theme)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_financial_motif'>financial_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_pal'>pal</span> <span class='op'>=</span> <span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_coin_palette'>coin_palette</span>
+  <span class='id identifier rubyid_sel'>sel</span> <span class='op'>=</span> <span class='id identifier rubyid_trigger_prefix'>trigger_prefix</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_defs'>defs</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~DEFS</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="#NGLOW-constant" title="Kettle::Sponsors::Animations::NGLOW (constant)">NGLOW</a></span></span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>    &lt;clipPath id=&quot;ks-win&quot;&gt;&lt;rect x=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>94</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y=&quot;2&quot; width=&quot;92&quot; height=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='int'>4</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; rx=&quot;4&quot;/&gt;&lt;/clipPath&gt;
+</span><span class='tstring_content'>    &lt;linearGradient id=&quot;ks-coin-face&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;0%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_face_light'>face_light</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;55%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_face_mid'>face_mid</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;100%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_face_dark'>face_dark</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>    &lt;/linearGradient&gt;
+</span><span class='tstring_content'>    &lt;linearGradient id=&quot;ks-coin-rim&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;0%&quot;&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;0%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rim_dark'>rim_dark</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;30%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rim_light'>rim_light</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;65%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_face_light'>face_light</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;stop offset=&quot;100%&quot; stop-color=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rim_dark'>rim_dark</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>    &lt;/linearGradient&gt;
+</span><span class='heredoc_end'>  DEFS
+</span>
+  <span class='id identifier rubyid_css'>css</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~CSS</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    .ks-drop{opacity:0;transform:translateY(-28px)}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-d1{animation:ks-fall 2.6s cubic-bezier(.32,0,.67,.95) infinite}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-d2{animation:ks-fall 2.6s cubic-bezier(.32,0,.67,.95) .85s infinite}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-d3{animation:ks-fall 2.6s cubic-bezier(.32,0,.67,.95) 1.7s infinite}
+</span><span class='tstring_content'>    @keyframes ks-fall{0%{opacity:0;transform:translateY(-26px)}14%{opacity:1}58%{opacity:1;transform:translateY(0)}74%{opacity:1;transform:translateY(-2px)}86%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}
+</span><span class='tstring_content'>    @media (prefers-reduced-motion:reduce){.ks-drop{animation:none!important;opacity:0}}
+</span><span class='heredoc_end'>  CSS
+</span>
+  <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>=</span> <span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='int'>6</span>
+  <span class='id identifier rubyid_horizon_y'>horizon_y</span> <span class='op'>=</span> <span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='int'>22</span>
+  <span class='id identifier rubyid_x0'>x0</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>92</span>
+  <span class='id identifier rubyid_x1'>x1</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>6</span>
+  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~SVG</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    &lt;g clip-path=&quot;url(#ks-win)&quot;&gt;
+</span><span class='tstring_content'>      &lt;g stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_pal'>pal</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_stroke'>stroke</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.6&quot; opacity=&quot;0.28&quot;&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>12</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x1'>x1</span> <span class='op'>-</span> <span class='int'>4</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>6</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span> <span class='op'>+</span> <span class='int'>7</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x1'>x1</span> <span class='op'>-</span> <span class='int'>2</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span> <span class='op'>+</span> <span class='int'>7</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_floor_y'>floor_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x1'>x1</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_floor_y'>floor_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>18</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>6</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_floor_y'>floor_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>48</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>44</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_floor_y'>floor_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>        &lt;line x1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x0'>x0</span> <span class='op'>+</span> <span class='int'>74</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y1=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_horizon_y'>horizon_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_x1'>x1</span> <span class='op'>-</span> <span class='int'>4</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y2=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_floor_y'>floor_y</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;/&gt;
+</span><span class='tstring_content'>      &lt;/g&gt;
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>58</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='int'>10</span><span class='comma'>,</span> <span class='float'>7.5</span><span class='comma'>,</span> <span class='float'>2.5</span><span class='comma'>,</span> <span class='float'>3.0</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>58</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>13.5</span><span class='comma'>,</span> <span class='float'>7.5</span><span class='comma'>,</span> <span class='float'>2.5</span><span class='comma'>,</span> <span class='float'>3.0</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>30</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='int'>4</span><span class='comma'>,</span> <span class='float'>10.0</span><span class='comma'>,</span> <span class='float'>3.2</span><span class='comma'>,</span> <span class='float'>3.8</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>30</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>8.2</span><span class='comma'>,</span> <span class='float'>10.0</span><span class='comma'>,</span> <span class='float'>3.2</span><span class='comma'>,</span> <span class='float'>3.8</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>30</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>12.4</span><span class='comma'>,</span> <span class='float'>10.0</span><span class='comma'>,</span> <span class='float'>3.2</span><span class='comma'>,</span> <span class='float'>3.8</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>47</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='int'>4</span><span class='comma'>,</span> <span class='float'>9.0</span><span class='comma'>,</span> <span class='float'>2.9</span><span class='comma'>,</span> <span class='float'>3.4</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='tstring_content'>      &lt;g class=&quot;ks-drop ks-d1&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>30</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>16.6</span><span class='comma'>,</span> <span class='float'>10.0</span><span class='comma'>,</span> <span class='float'>3.2</span><span class='comma'>,</span> <span class='float'>3.8</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='comma'>,</span> <span class='label'>glow:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;
+</span><span class='tstring_content'>      &lt;g class=&quot;ks-drop ks-d2&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>58</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>17.0</span><span class='comma'>,</span> <span class='float'>7.5</span><span class='comma'>,</span> <span class='float'>2.5</span><span class='comma'>,</span> <span class='float'>3.0</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='comma'>,</span> <span class='label'>glow:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;
+</span><span class='tstring_content'>      &lt;g class=&quot;ks-drop ks-d3&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_coin_3d'>coin_3d</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>47</span><span class='comma'>,</span> <span class='id identifier rubyid_floor_y'>floor_y</span> <span class='op'>-</span> <span class='float'>7.8</span><span class='comma'>,</span> <span class='float'>9.0</span><span class='comma'>,</span> <span class='float'>2.9</span><span class='comma'>,</span> <span class='float'>3.4</span><span class='comma'>,</span> <span class='id identifier rubyid_pal'>pal</span><span class='comma'>,</span> <span class='label'>glow:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;
+</span><span class='tstring_content'>    &lt;/g&gt;
+</span><span class='heredoc_end'>  SVG
+</span>
+  <span class='lbrace'>{</span><span class='label'>defs:</span> <span class='id identifier rubyid_defs'>defs</span><span class='comma'>,</span> <span class='label'>css:</span> <span class='id identifier rubyid_css'>css</span><span class='comma'>,</span> <span class='label'>body:</span> <span class='id identifier rubyid_body'>body</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gear_path-class_method">
+  
+    .<strong>gear_path</strong>(cx, cy, outer:, inner:, hole:, teeth:)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Compute a crisp toothed gear polygon + center hub circle.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 232</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gear_path'>gear_path</span><span class='lparen'>(</span><span class='id identifier rubyid_cx'>cx</span><span class='comma'>,</span> <span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span> <span class='label'>outer:</span><span class='comma'>,</span> <span class='label'>inner:</span><span class='comma'>,</span> <span class='label'>hole:</span><span class='comma'>,</span> <span class='label'>teeth:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_pts'>pts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_step'>step</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='float'>2.0</span> <span class='op'>*</span> <span class='const'>Math</span><span class='op'>::</span><span class='const'>PI</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_teeth'>teeth</span>
+  <span class='id identifier rubyid_teeth'>teeth</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_a0'>a0</span> <span class='op'>=</span> <span class='id identifier rubyid_i'>i</span> <span class='op'>*</span> <span class='id identifier rubyid_step'>step</span>
+    <span class='lbracket'>[</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_inner'>inner</span><span class='comma'>,</span> <span class='id identifier rubyid_a0'>a0</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_outer'>outer</span><span class='comma'>,</span> <span class='id identifier rubyid_a0'>a0</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_step'>step</span> <span class='op'>*</span> <span class='float'>0.18</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_outer'>outer</span><span class='comma'>,</span> <span class='id identifier rubyid_a0'>a0</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_step'>step</span> <span class='op'>*</span> <span class='float'>0.48</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_inner'>inner</span><span class='comma'>,</span> <span class='id identifier rubyid_a0'>a0</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_step'>step</span> <span class='op'>*</span> <span class='float'>0.66</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+    <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_ang'>ang</span><span class='op'>|</span>
+      <span class='id identifier rubyid_pts'>pts</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%.1f,%.1f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cx'>cx</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_cos'>cos</span><span class='lparen'>(</span><span class='id identifier rubyid_ang'>ang</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_cy'>cy</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_r'>r</span> <span class='op'>*</span> <span class='const'>Math</span><span class='period'>.</span><span class='id identifier rubyid_sin'>sin</span><span class='lparen'>(</span><span class='id identifier rubyid_ang'>ang</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;polygon points=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pts'>pts</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;none&quot; stroke=&quot;__COLOR__&quot; stroke-width=&quot;1.25&quot; stroke-linejoin=&quot;round&quot;/&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
+    <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;circle cx=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cx'>cx</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; cy=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cy'>cy</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; r=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_hole'>hole</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; fill=&quot;none&quot; stroke=&quot;__COLOR__&quot; stroke-width=&quot;1.1&quot;/&gt;</span><span class='tstring_end'>)</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="services_motif-class_method">
+  
+    .<strong>services_motif</strong>(width, height, theme)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_services_motif'>services_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accent'>accent</span> <span class='op'>=</span> <span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_accent_for'>accent_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>services</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sel'>sel</span> <span class='op'>=</span> <span class='id identifier rubyid_trigger_prefix'>trigger_prefix</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cx1'>cx1</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>40</span>
+  <span class='id identifier rubyid_cy1'>cy1</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_height'>height</span> <span class='op'>*</span> <span class='float'>0.44</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span>
+  <span class='id identifier rubyid_cx2'>cx2</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>20</span>
+  <span class='id identifier rubyid_cy2'>cy2</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_height'>height</span> <span class='op'>*</span> <span class='float'>0.68</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span>
+
+  <span class='id identifier rubyid_css'>css</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~CSS</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    .ks-gear1,.ks-gear2{transform-box:fill-box;transform-origin:center}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-gear1{animation:ks-cw 6s linear infinite}
+</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-gear2{animation:ks-ccw 4.5s linear infinite}
+</span><span class='tstring_content'>    @keyframes ks-cw{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</span><span class='tstring_content'>    @keyframes ks-ccw{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+</span><span class='tstring_content'>    @media (prefers-reduced-motion:reduce){.ks-gear1,.ks-gear2{animation:none!important}}
+</span><span class='heredoc_end'>  CSS
+</span>
+  <span class='id identifier rubyid_g1'>g1</span> <span class='op'>=</span> <span class='id identifier rubyid_gear_path'>gear_path</span><span class='lparen'>(</span><span class='id identifier rubyid_cx1'>cx1</span><span class='comma'>,</span> <span class='id identifier rubyid_cy1'>cy1</span><span class='comma'>,</span> <span class='label'>outer:</span> <span class='float'>12.5</span><span class='comma'>,</span> <span class='label'>inner:</span> <span class='float'>9.2</span><span class='comma'>,</span> <span class='label'>hole:</span> <span class='float'>4.0</span><span class='comma'>,</span> <span class='label'>teeth:</span> <span class='int'>8</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_g2'>g2</span> <span class='op'>=</span> <span class='id identifier rubyid_gear_path'>gear_path</span><span class='lparen'>(</span><span class='id identifier rubyid_cx2'>cx2</span><span class='comma'>,</span> <span class='id identifier rubyid_cy2'>cy2</span><span class='comma'>,</span> <span class='label'>outer:</span> <span class='float'>8.8</span><span class='comma'>,</span> <span class='label'>inner:</span> <span class='float'>6.3</span><span class='comma'>,</span> <span class='label'>hole:</span> <span class='float'>2.6</span><span class='comma'>,</span> <span class='label'>teeth:</span> <span class='int'>6</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='heredoc_beg'>&lt;&lt;~SVG</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span>
+<span class='tstring_content'>    &lt;g opacity=&quot;0.65&quot; filter=&quot;url(#nglow)&quot;&gt;
+</span><span class='tstring_content'>      &lt;g class=&quot;ks-gear1&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_g1'>g1</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__COLOR__</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_accent'>accent</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;
+</span><span class='tstring_content'>      &lt;g class=&quot;ks-gear2&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_g2'>g2</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__COLOR__</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_accent'>accent</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;
+</span><span class='tstring_content'>    &lt;/g&gt;
+</span><span class='heredoc_end'>  SVG
+</span>
+  <span class='lbrace'>{</span><span class='label'>defs:</span> <span class='const'><span class='object_link'><a href="#NGLOW-constant" title="Kettle::Sponsors::Animations::NGLOW (constant)">NGLOW</a></span></span><span class='comma'>,</span> <span class='label'>css:</span> <span class='id identifier rubyid_css'>css</span><span class='comma'>,</span> <span class='label'>body:</span> <span class='id identifier rubyid_body'>body</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="time_motif-class_method">
+  
+    .<strong>time_motif</strong>(width, height, theme)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_time_motif'>time_motif</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='comma'>,</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_accent'>accent</span> <span class='op'>=</span> <span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_accent_for'>accent_for</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sel'>sel</span> <span class='op'>=</span> <span class='id identifier rubyid_trigger_prefix'>trigger_prefix</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='comment'># Prime-staggered durations and delays simulate organic slow random typing
+</span>  <span class='comment'># with a bright strike and smooth residual glow decay.
+</span>  <span class='id identifier rubyid_active_keys'>active_keys</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.3s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-0.2s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>4</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>3.7s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.9s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4.1s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.4s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.9s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-0.75s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>5</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>5.3s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.4s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>3.1s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.8s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span> <span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>4.7s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.6s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span> <span class='int'>4</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>5.9s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2.3s</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_css_rules'>css_rules</span> <span class='op'>=</span> <span class='lbracket'>[</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.ks-key-lit{opacity:0;transition:opacity .65s ease-out}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@keyframes ks-type{0%,100%{opacity:0}6%{opacity:.95}24%{opacity:.45}42%{opacity:.12}56%{opacity:0}}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@media (prefers-reduced-motion:reduce){.ks-key-lit{animation:none!important;opacity:0}}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_y_start'>y_start</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>12</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='int'>34</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='float'>2.0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_round'>round</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+  <span class='id identifier rubyid_base_keys'>base_keys</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_lit_keys'>lit_keys</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
+    <span class='int'>6</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_col'>col</span><span class='op'>|</span>
+      <span class='id identifier rubyid_kx'>kx</span> <span class='op'>=</span> <span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='int'>88</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span> <span class='op'>*</span> <span class='int'>12</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_row'>row</span> <span class='op'>*</span> <span class='int'>3</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_ky'>ky</span> <span class='op'>=</span> <span class='id identifier rubyid_y_start'>y_start</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_row'>row</span> <span class='op'>*</span> <span class='int'>11</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_base_keys'>base_keys</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;rect x=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_kx'>kx</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ky'>ky</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; width=&quot;9.5&quot; height=&quot;8&quot; rx=&quot;1.5&quot; fill=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_background'>background</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_esc'>esc</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_border'>border</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.7&quot; opacity=&quot;0.8&quot;/&gt;</span><span class='tstring_end'>)</span></span>
+      <span class='id identifier rubyid_timing'>timing</span> <span class='op'>=</span> <span class='id identifier rubyid_active_keys'>active_keys</span><span class='lbracket'>[</span><span class='lbracket'>[</span><span class='id identifier rubyid_row'>row</span><span class='comma'>,</span> <span class='id identifier rubyid_col'>col</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_timing'>timing</span>
+
+      <span class='id identifier rubyid_idx'>idx</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_dur'>dur</span><span class='comma'>,</span> <span class='id identifier rubyid_delay'>delay</span> <span class='op'>=</span> <span class='id identifier rubyid_timing'>timing</span>
+      <span class='id identifier rubyid_css_rules'>css_rules</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sel'>sel</span><span class='embexpr_end'>}</span><span class='tstring_content'> .ks-k</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_idx'>idx</span><span class='embexpr_end'>}</span><span class='tstring_content'>{animation:ks-type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dur'>dur</span><span class='embexpr_end'>}</span><span class='tstring_content'> ease-out </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_delay'>delay</span><span class='embexpr_end'>}</span><span class='tstring_content'> infinite}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_lit_keys'>lit_keys</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;rect class=&quot;ks-key-lit ks-k</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_idx'>idx</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; x=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_kx'>kx</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; y=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ky'>ky</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; width=&quot;9.5&quot; height=&quot;8&quot; rx=&quot;1.5&quot; fill=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accent'>accent</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accent'>accent</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot; stroke-width=&quot;0.6&quot; filter=&quot;url(#nglow)&quot;/&gt;</span><span class='tstring_end'>)</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;g&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_base_keys'>base_keys</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lit_keys'>lit_keys</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/g&gt;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='lbrace'>{</span><span class='label'>defs:</span> <span class='const'><span class='object_link'><a href="#NGLOW-constant" title="Kettle::Sponsors::Animations::NGLOW (constant)">NGLOW</a></span></span><span class='comma'>,</span> <span class='label'>css:</span> <span class='id identifier rubyid_css_rules'>css_rules</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>body:</span> <span class='id identifier rubyid_body'>body</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="trigger_prefix-class_method">
+  
+    .<strong>trigger_prefix</strong>(theme)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/animations.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_trigger_prefix'>trigger_prefix</span><span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_animate'>animate</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>always</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>svg</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>svg:hover</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 12:40:45 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.46 (ruby-4.0.10).
+</div>
+
+    </div>
+  </body>
+</html>

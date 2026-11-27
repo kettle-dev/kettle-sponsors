@@ -90,7 +90,8 @@
   <div class="discussion">
     <p>Builds the linked, responsive badge markup:<br />
   <a href=""><picture><source phone="" /><img desktop="" /></picture></a><br />
-Badges are concatenated without whitespace so they tile as a grid.</p>
+Badges are concatenated without whitespace so they tile as a grid.<br />
+Also builds compact single-line Shields.io-style badge parade markup.</p>
 
 
   </div>
@@ -116,7 +117,7 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#badge-class_method" title="badge (class method)">.<strong>badge</strong>(sponsor, base:, width: &quot;25%&quot;)  &#x21d2; Object </a>
+      <a href="#badge-class_method" title="badge (class method)">.<strong>badge</strong>(sponsor, base:, width: &quot;25%&quot;, **_options)  &#x21d2; String </a>
     
 
     
@@ -139,7 +140,7 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#badges-class_method" title="badges (class method)">.<strong>badges</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, width: &quot;25%&quot;, today: Date.today)  &#x21d2; Object </a>
+      <a href="#badges-class_method" title="badges (class method)">.<strong>badges</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, width: &quot;25%&quot;, today: Date.today, **options)  &#x21d2; String </a>
     
 
     
@@ -159,6 +160,52 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shield-class_method" title="shield (class method)">.<strong>shield</strong>(sponsor, base:, **_options)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Build a single compact Shields.io-style badge tag for a README badge parade.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shields-class_method" title="shields (class method)">.<strong>shields</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, today: Date.today, **options)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Build a space-separated single-line parade of compact Shields-style badges.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
     
   
@@ -172,7 +219,7 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
       <div class="method_details first">
   <h3 class="signature first" id="badge-class_method">
   
-    .<strong>badge</strong>(sponsor, base:, width: &quot;25%&quot;)  &#x21d2; <tt>Object</tt> 
+    .<strong>badge</strong>(sponsor, base:, width: &quot;25%&quot;, **_options)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -191,6 +238,17 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
   
     <li>
       
+        <span class='name'>sponsor</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>base</span>
       
       
@@ -204,8 +262,53 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>width</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;25%&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>CSS/HTML width attribute for grid tiling</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>_options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -213,20 +316,20 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
       <pre class="lines">
 
 
-14
-15
-16
-17
-18
 19
 20
 21
-22</pre>
+22
+23
+24
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_badge'>badge</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='comma'>,</span> <span class='label'>base:</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>25%</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_badge'>badge</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='comma'>,</span> <span class='label'>base:</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>25%</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid__options'>_options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_base'>base</span> <span class='op'>=</span> <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_alt'>alt</span> <span class='op'>=</span> <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escapeHTML'>escapeHTML</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sponsor: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> - </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_picture'>picture</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;picture&gt;&lt;source media=&quot;(max-width: 600px)&quot; srcset=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_base'>base</span><span class='embexpr_end'>}</span><span class='tstring_content'>/phone/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_slug'>slug</span><span class='embexpr_end'>}</span><span class='tstring_content'>.svg&quot;&gt;</span><span class='tstring_end'>)</span></span> <span class='op'>+</span>
@@ -243,31 +346,372 @@ Badges are concatenated without whitespace so they tile as a grid.</p>
       <div class="method_details ">
   <h3 class="signature " id="badges-class_method">
   
-    .<strong>badges</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, width: &quot;25%&quot;, today: Date.today)  &#x21d2; <tt>Object</tt> 
+    .<strong>badges</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, width: &quot;25%&quot;, today: Date.today, **options)  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sponsors</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>central_base</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>CENTRAL_BASE</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>local_base</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>LOCAL_DIR</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>width</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;25%&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>today</span>
+      
+      
+        <span class='type'>(<tt>Date</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Date.today</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26
-27
-28</pre>
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_badges'>badges</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>central_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#CENTRAL_BASE-constant" title="Kettle::Sponsors::CENTRAL_BASE (constant)">CENTRAL_BASE</a></span></span><span class='comma'>,</span> <span class='label'>local_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#LOCAL_DIR-constant" title="Kettle::Sponsors::LOCAL_DIR (constant)">LOCAL_DIR</a></span></span><span class='comma'>,</span> <span class='label'>width:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>25%</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_badges'>badges</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>central_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#CENTRAL_BASE-constant" title="Kettle::Sponsors::CENTRAL_BASE (constant)">CENTRAL_BASE</a></span></span><span class='comma'>,</span> <span class='label'>local_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#LOCAL_DIR-constant" title="Kettle::Sponsors::LOCAL_DIR (constant)">LOCAL_DIR</a></span></span><span class='comma'>,</span> <span class='label'>width:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>25%</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_sponsors'>sponsors</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-    <span class='id identifier rubyid_badge'>badge</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='label'>base:</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_local?'>local?</span> <span class='op'>?</span> <span class='id identifier rubyid_local_base'>local_base</span> <span class='op'>:</span> <span class='id identifier rubyid_central_base'>central_base</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='id identifier rubyid_width'>width</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_badge'>badge</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='label'>base:</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_local?'>local?</span> <span class='op'>?</span> <span class='id identifier rubyid_local_base'>local_base</span> <span class='op'>:</span> <span class='id identifier rubyid_central_base'>central_base</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shield-class_method">
+  
+    .<strong>shield</strong>(sponsor, base:, **_options)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Build a single compact Shields.io-style badge tag for a README badge parade.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sponsor</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>URL or relative path holding +shield/<slug>.svg+</slug></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>_options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shield'>shield</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='comma'>,</span> <span class='label'>base:</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid__options'>_options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_base'>base</span> <span class='op'>=</span> <span class='id identifier rubyid_base'>base</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="Icons.html" title="Kettle::Sponsors::Icons (module)">Icons</a></span></span><span class='period'>.</span><span class='id identifier rubyid_shield_label'><span class='object_link'><a href="Icons.html#shield_label-class_method" title="Kettle::Sponsors::Icons.shield_label (method)">shield_label</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_alt'>alt</span> <span class='op'>=</span> <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escapeHTML'>escapeHTML</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_label'>label</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_img'>img</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;img src=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_base'>base</span><span class='embexpr_end'>}</span><span class='tstring_content'>/shield/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_slug'>slug</span><span class='embexpr_end'>}</span><span class='tstring_content'>.svg&quot; alt=&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_alt'>alt</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;&gt;</span><span class='tstring_end'>)</span></span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_img'>img</span> <span class='kw'>if</span> <span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_href'>href</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='tstring'><span class='tstring_beg'>%(</span><span class='tstring_content'>&lt;a href=&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escapeHTML'>escapeHTML</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsor'>sponsor</span><span class='period'>.</span><span class='id identifier rubyid_href'>href</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_img'>img</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/a&gt;</span><span class='tstring_end'>)</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shields-class_method">
+  
+    .<strong>shields</strong>(sponsors, central_base: CENTRAL_BASE, local_base: LOCAL_DIR, today: Date.today, **options)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Build a space-separated single-line parade of compact Shields-style badges.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sponsors</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>central_base</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>CENTRAL_BASE</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>local_base</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>LOCAL_DIR</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>today</span>
+      
+      
+        <span class='type'>(<tt>Date</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Date.today</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/markup.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shields'>shields</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>central_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#CENTRAL_BASE-constant" title="Kettle::Sponsors::CENTRAL_BASE (constant)">CENTRAL_BASE</a></span></span><span class='comma'>,</span> <span class='label'>local_base:</span> <span class='const'><span class='object_link'><a href="../Sponsors.html#LOCAL_DIR-constant" title="Kettle::Sponsors::LOCAL_DIR (constant)">LOCAL_DIR</a></span></span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sponsors'>sponsors</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+    <span class='id identifier rubyid_shield'>shield</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='label'>base:</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_local?'>local?</span> <span class='op'>?</span> <span class='id identifier rubyid_local_base'>local_base</span> <span class='op'>:</span> <span class='id identifier rubyid_central_base'>central_base</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

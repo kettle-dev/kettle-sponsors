@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.0...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.1...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -84,6 +84,51 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="security">Security</h3>
 
+<h2 id="011---2026-11-27">
+<a href="https://github.com/kettle-dev/kettle-sponsors/compare/v0.1.0...v0.1.1">0.1.1</a> - 2026-11-27</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/kettle-dev/kettle-sponsors/releases/tag/v0.1.1">v0.1.1</a>
+</li>
+  <li>COVERAGE: 96.37% – 717/744 lines in 18 files</li>
+  <li>BRANCH COVERAGE: 80.32% – 200/249 branches in 18 files</li>
+  <li>59.62% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>Embedded sponsor logo support (<code>logo</code> / <code>image_src</code> / <code>img_src</code>) via <code>Kettle::Sponsors::LogoLoader</code>: offline local file &amp; <code>data:</code> URI base64 embedding by default, with opt-in cached remote HTTP(S) fetching (<code>fetch_logos: true</code> / <code>--fetch-logos</code>).</li>
+  <li>Sponsorship <code>kind</code> support (<code>financial</code> default, <code>compute</code>, <code>time</code>, <code>services</code>) with crisp inline SVG vector icons (<code>Kettle::Sponsors::Icons</code>) and hybrid desktop (icon + label) / phone (top-right icon pill) layouts.</li>
+  <li>Configurable badge theme (<code>Kettle::Sponsors::Theme</code>, <code>readme.sponsor_theme</code>): <code>background</code>, <code>border</code>, <code>text</code>, <code>muted</code>, <code>description</code>, <code>logo_background</code>, per-kind <code>accents</code>, <code>coin_metal</code> (<code>gold</code> / <code>silver</code>), <code>label_color</code>, <code>color</code>, CSS <code>font</code> stack (defaulting to <code>pboling/pboling</code>’s stack), and optional <code>font_file</code> character subsetting via <code>pyftsubset</code> (<code>Kettle::Sponsors::FontSubsetter</code>).</li>
+  <li>Compact single-line Shields.io-style offline SVG badges (<code>Kettle::Sponsors::ShieldRenderer</code>, <code>Markup.shield</code> / <code>Markup.shields</code>, <code>&lt;out&gt;/shield/&lt;slug&gt;.svg</code>) supporting all five canonical styles (<code>flat</code>, <code>flat-square</code>, <code>plastic</code>, <code>for-the-badge</code>, <code>social</code>).</li>
+  <li>Kind-specific CSS animations (<code>Kettle::Sponsors::Animations</code>, <code>animate: none | hover | always</code>, honoring <code>prefers-reduced-motion</code>): 3D metallic gold/silver coins (<code>financial</code>), ECG heartbeat sparkline (<code>compute</code>), glowing keyboard (<code>time</code>), and interlocking gears (<code>services</code>).</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>[kc] kettle-jem/prepare: updated 13 project files since the last release:
+    <ul>
+      <li>dependencies (13)</li>
+    </ul>
+  </li>
+  <li>[kc] kettle-jem/template: updated 10 project files since the last release:
+    <ul>
+      <li>dependencies (2)</li>
+      <li>documentation (1)</li>
+      <li>other (4)</li>
+      <li>workflows (3)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>Completed the user-managed <code>README.md</code> sections (<code>Synopsis</code>, <code>Configuration</code>, and <code>Basic Usage</code>) documenting <code>kettle-jem</code> plugin setup, sponsor configuration options, CLI usage, the Ruby API, and generated SVG badge examples hosted in <code>docs/images/</code>.</li>
+</ul>
+
 <h2 id="010---2026-11-26">
 <a href="https://github.com/kettle-dev/kettle-sponsors/compare/76b3a01f826cb55ef42436774feacc1991c66971...v0.1.0">0.1.0</a> - 2026-11-26</h2>
 
@@ -96,7 +141,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Initial release</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>kettle-jem-template-20260720-005 - README Support &amp; Community links now<br>
@@ -121,7 +166,7 @@ engine support needs.</p>
 <code>kettle-sponsors publish --from PATH --registry PATH</code> merges sponsors by slug into a central registry file (deterministic, idempotent)</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>[kc] kettle-jem/prepare: updated 6 project files:
@@ -158,7 +203,7 @@ installing the main Gemfile bundle.</p>
   </li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now<br>

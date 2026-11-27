@@ -88,8 +88,9 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Writes desktop and phone SVGs for a set of sponsors into a directory,<br />
-skipping all work when the active-sponsor checksum is unchanged.</p>
+    <p>Writes desktop, phone, and small Shields-style SVGs for a set of sponsors<br />
+into a directory, skipping all work when the active-sponsor checksum is<br />
+unchanged.</p>
 
 
   </div>
@@ -115,7 +116,7 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#render-class_method" title="render (class method)">.<strong>render</strong>(sponsors, out:, today: Date.today, force: false)  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#render-class_method" title="render (class method)">.<strong>render</strong>(sponsors, out:, today: Date.today, force: false, theme: Theme.new, base_dir: nil, include_shields: true, **_options)  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -138,7 +139,7 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stale%3F-class_method" title="stale? (class method)">.<strong>stale?</strong>(sponsors, out:, today: Date.today)  &#x21d2; Boolean </a>
+      <a href="#stale%3F-class_method" title="stale? (class method)">.<strong>stale?</strong>(sponsors, out:, today: Date.today, theme: Theme.new, **_options)  &#x21d2; Boolean </a>
     
 
     
@@ -171,7 +172,7 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
       <div class="method_details first">
   <h3 class="signature first" id="render-class_method">
   
-    .<strong>render</strong>(sponsors, out:, today: Date.today, force: false)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+    .<strong>render</strong>(sponsors, out:, today: Date.today, force: false, theme: Theme.new, base_dir: nil, include_shields: true, **_options)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
   
 
   
@@ -185,7 +186,125 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>sponsors</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>out</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>output directory</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>today</span>
+      
+      
+        <span class='type'>(<tt>Date</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Date.today</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>force</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>theme</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Theme.new</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_dir</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>base directory for resolving relative local logo paths</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>include_shields</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>whether to also write +shield/<slug>.svg+ (default true)</slug></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>_options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -210,15 +329,6 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
       <pre class="lines">
 
 
-13
-14
-15
-16
-17
-18
-19
-20
-21
 22
 23
 24
@@ -228,24 +338,55 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
 28
 29
 30
-31</pre>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/renderer.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/renderer.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>out:</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='label'>force:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>out:</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='label'>force:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>theme:</span> <span class='const'><span class='object_link'><a href="Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Theme.html#initialize-instance_method" title="Kettle::Sponsors::Theme#initialize (method)">new</a></span></span><span class='comma'>,</span> <span class='label'>base_dir:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>include_shields:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid__options'>_options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_active'>active</span> <span class='op'>=</span> <span class='id identifier rubyid_sponsors'>sponsors</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_active?'>active?</span><span class='lparen'>(</span><span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='id identifier rubyid_sum'>sum</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_compute'><span class='object_link'><a href="Checksum.html#compute-class_method" title="Kettle::Sponsors::Checksum.compute (method)">compute</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sum'>sum</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_compute'><span class='object_link'><a href="Checksum.html#compute-class_method" title="Kettle::Sponsors::Checksum.compute (method)">compute</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='label'>theme:</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_force'>force</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current?'><span class='object_link'><a href="Checksum.html#current%3F-class_method" title="Kettle::Sponsors::Checksum.current? (method)">current?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='id identifier rubyid_sum'>sum</span><span class='rparen'>)</span>
 
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phone</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_include_shields'>include_shields</span>
   <span class='id identifier rubyid_written'>written</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='comment'># Stale files (expired or removed sponsors) are removed so output matches config.
-</span>  <span class='const'>Dir</span><span class='lbracket'>[</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{,phone/}*.svg</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+</span>  <span class='const'>Dir</span><span class='lbracket'>[</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{,phone/,shield/}*.svg</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_variants'>variants</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:desktop</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phone</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:phone</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_variants'>variants</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shield</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='symbol'>:shield</span> <span class='kw'>if</span> <span class='id identifier rubyid_include_shields'>include_shields</span>
+
   <span class='id identifier rubyid_active'>active</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
-    <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:desktop</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phone</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='symbol'>:phone</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sub'>sub</span><span class='comma'>,</span> <span class='id identifier rubyid_variant'>variant</span><span class='op'>|</span>
+    <span class='id identifier rubyid_logo_uri'>logo_uri</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LogoLoader.html" title="Kettle::Sponsors::LogoLoader (module)">LogoLoader</a></span></span><span class='period'>.</span><span class='id identifier rubyid_resolve'><span class='object_link'><a href="LogoLoader.html#resolve-class_method" title="Kettle::Sponsors::LogoLoader.resolve (method)">resolve</a></span></span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_logo'>logo</span><span class='comma'>,</span>
+      <span class='label'>base_dir:</span> <span class='id identifier rubyid_base_dir'>base_dir</span><span class='comma'>,</span>
+      <span class='label'>fetch:</span> <span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_fetch_logos?'>fetch_logos?</span><span class='comma'>,</span>
+      <span class='label'>cache_dir:</span> <span class='id identifier rubyid_theme'>theme</span><span class='period'>.</span><span class='id identifier rubyid_logo_cache'>logo_cache</span><span class='comma'>,</span>
+      <span class='label'>refresh:</span> <span class='id identifier rubyid_force'>force</span>
+    <span class='rparen'>)</span>
+    <span class='id identifier rubyid_variants'>variants</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sub'>sub</span><span class='comma'>,</span> <span class='id identifier rubyid_variant'>variant</span><span class='op'>|</span>
       <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='id identifier rubyid_sub'>sub</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_slug'>slug</span><span class='embexpr_end'>}</span><span class='tstring_content'>.svg</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="BadgeRenderer.html" title="Kettle::Sponsors::BadgeRenderer (module)">BadgeRenderer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_svg'><span class='object_link'><a href="BadgeRenderer.html#svg-class_method" title="Kettle::Sponsors::BadgeRenderer.svg (method)">svg</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='label'>variant:</span> <span class='id identifier rubyid_variant'>variant</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="BadgeRenderer.html" title="Kettle::Sponsors::BadgeRenderer (module)">BadgeRenderer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_svg'><span class='object_link'><a href="BadgeRenderer.html#svg-class_method" title="Kettle::Sponsors::BadgeRenderer.svg (method)">svg</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='label'>variant:</span> <span class='id identifier rubyid_variant'>variant</span><span class='comma'>,</span> <span class='label'>theme:</span> <span class='id identifier rubyid_theme'>theme</span><span class='comma'>,</span> <span class='label'>logo_uri:</span> <span class='id identifier rubyid_logo_uri'>logo_uri</span><span class='comma'>,</span> <span class='label'>base_dir:</span> <span class='id identifier rubyid_base_dir'>base_dir</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_written'>written</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_path'>path</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -260,7 +401,7 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
       <div class="method_details ">
   <h3 class="signature " id="stale?-class_method">
   
-    .<strong>stale?</strong>(sponsors, out:, today: Date.today)  &#x21d2; <tt>Boolean</tt> 
+    .<strong>stale?</strong>(sponsors, out:, today: Date.today, theme: Theme.new, **_options)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -274,7 +415,74 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>sponsors</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>out</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>today</span>
+      
+      
+        <span class='type'>(<tt>Date</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Date.today</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>theme</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Theme.new</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>_options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>forward-compatible options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -295,15 +503,15 @@ skipping all work when the active-sponsor checksum is unchanged.</p>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/renderer.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors/renderer.rb', line 59</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_stale?'>stale?</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>out:</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span>
-  <span class='op'>!</span><span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current?'><span class='object_link'><a href="Checksum.html#current%3F-class_method" title="Kettle::Sponsors::Checksum.current? (method)">current?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_compute'><span class='object_link'><a href="Checksum.html#compute-class_method" title="Kettle::Sponsors::Checksum.compute (method)">compute</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='id identifier rubyid_today'>today</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_stale?'>stale?</span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>out:</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='label'>theme:</span> <span class='const'><span class='object_link'><a href="Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Theme.html#initialize-instance_method" title="Kettle::Sponsors::Theme#initialize (method)">new</a></span></span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid__options'>_options</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_current?'><span class='object_link'><a href="Checksum.html#current%3F-class_method" title="Kettle::Sponsors::Checksum.current? (method)">current?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span></span><span class='period'>.</span><span class='id identifier rubyid_compute'><span class='object_link'><a href="Checksum.html#compute-class_method" title="Kettle::Sponsors::Checksum.compute (method)">compute</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_sponsors'>sponsors</span><span class='comma'>,</span> <span class='label'>today:</span> <span class='id identifier rubyid_today'>today</span><span class='comma'>,</span> <span class='label'>theme:</span> <span class='id identifier rubyid_theme'>theme</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

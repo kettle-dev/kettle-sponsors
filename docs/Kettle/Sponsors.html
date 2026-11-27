@@ -81,7 +81,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/kettle/sponsors.rb<span class="defines">,<br>
-  lib/kettle/sponsors/cli.rb,<br> lib/kettle/sponsors/config.rb,<br> lib/kettle/sponsors/markup.rb,<br> lib/kettle/sponsors/plugin.rb,<br> lib/kettle/sponsors/sponsor.rb,<br> lib/kettle/sponsors/version.rb,<br> lib/kettle/sponsors/checksum.rb,<br> lib/kettle/sponsors/registry.rb,<br> lib/kettle/sponsors/renderer.rb,<br> lib/kettle/sponsors/verifier.rb,<br> lib/kettle/sponsors/badge_renderer.rb</span>
+  lib/kettle/sponsors/cli.rb,<br> lib/kettle/sponsors/icons.rb,<br> lib/kettle/sponsors/theme.rb,<br> lib/kettle/sponsors/config.rb,<br> lib/kettle/sponsors/markup.rb,<br> lib/kettle/sponsors/plugin.rb,<br> lib/kettle/sponsors/sponsor.rb,<br> lib/kettle/sponsors/version.rb,<br> lib/kettle/sponsors/checksum.rb,<br> lib/kettle/sponsors/registry.rb,<br> lib/kettle/sponsors/renderer.rb,<br> lib/kettle/sponsors/verifier.rb,<br> lib/kettle/sponsors/animations.rb,<br> lib/kettle/sponsors/logo_loader.rb,<br> lib/kettle/sponsors/badge_renderer.rb,<br> lib/kettle/sponsors/font_subsetter.rb,<br> lib/kettle/sponsors/shield_renderer.rb</span>
 
 </dd>
   </dl>
@@ -107,11 +107,11 @@ project instead.</p>
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Sponsors/BadgeRenderer.html" title="Kettle::Sponsors::BadgeRenderer (module)">BadgeRenderer</a></span>, <span class='object_link'><a href="Sponsors/Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span>, <span class='object_link'><a href="Sponsors/Config.html" title="Kettle::Sponsors::Config (module)">Config</a></span>, <span class='object_link'><a href="Sponsors/Markup.html" title="Kettle::Sponsors::Markup (module)">Markup</a></span>, <span class='object_link'><a href="Sponsors/Plugin.html" title="Kettle::Sponsors::Plugin (module)">Plugin</a></span>, <span class='object_link'><a href="Sponsors/Registry.html" title="Kettle::Sponsors::Registry (module)">Registry</a></span>, <span class='object_link'><a href="Sponsors/Renderer.html" title="Kettle::Sponsors::Renderer (module)">Renderer</a></span>, <span class='object_link'><a href="Sponsors/Verifier.html" title="Kettle::Sponsors::Verifier (module)">Verifier</a></span>, <span class='object_link'><a href="Sponsors/Version.html" title="Kettle::Sponsors::Version (module)">Version</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Sponsors/Animations.html" title="Kettle::Sponsors::Animations (module)">Animations</a></span>, <span class='object_link'><a href="Sponsors/BadgeRenderer.html" title="Kettle::Sponsors::BadgeRenderer (module)">BadgeRenderer</a></span>, <span class='object_link'><a href="Sponsors/Checksum.html" title="Kettle::Sponsors::Checksum (module)">Checksum</a></span>, <span class='object_link'><a href="Sponsors/Config.html" title="Kettle::Sponsors::Config (module)">Config</a></span>, <span class='object_link'><a href="Sponsors/FontSubsetter.html" title="Kettle::Sponsors::FontSubsetter (module)">FontSubsetter</a></span>, <span class='object_link'><a href="Sponsors/Icons.html" title="Kettle::Sponsors::Icons (module)">Icons</a></span>, <span class='object_link'><a href="Sponsors/LogoLoader.html" title="Kettle::Sponsors::LogoLoader (module)">LogoLoader</a></span>, <span class='object_link'><a href="Sponsors/Markup.html" title="Kettle::Sponsors::Markup (module)">Markup</a></span>, <span class='object_link'><a href="Sponsors/Plugin.html" title="Kettle::Sponsors::Plugin (module)">Plugin</a></span>, <span class='object_link'><a href="Sponsors/Registry.html" title="Kettle::Sponsors::Registry (module)">Registry</a></span>, <span class='object_link'><a href="Sponsors/Renderer.html" title="Kettle::Sponsors::Renderer (module)">Renderer</a></span>, <span class='object_link'><a href="Sponsors/ShieldRenderer.html" title="Kettle::Sponsors::ShieldRenderer (module)">ShieldRenderer</a></span>, <span class='object_link'><a href="Sponsors/Verifier.html" title="Kettle::Sponsors::Verifier (module)">Verifier</a></span>, <span class='object_link'><a href="Sponsors/Version.html" title="Kettle::Sponsors::Version (module)">Version</a></span>
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Sponsors/CLI.html" title="Kettle::Sponsors::CLI (class)">CLI</a></span>, <span class='object_link'><a href="Sponsors/Error.html" title="Kettle::Sponsors::Error (class)">Error</a></span>, <span class='object_link'><a href="Sponsors/Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Sponsors/CLI.html" title="Kettle::Sponsors::CLI (class)">CLI</a></span>, <span class='object_link'><a href="Sponsors/Error.html" title="Kettle::Sponsors::Error (class)">Error</a></span>, <span class='object_link'><a href="Sponsors/Sponsor.html" title="Kettle::Sponsors::Sponsor (class)">Sponsor</a></span>, <span class='object_link'><a href="Sponsors/Theme.html" title="Kettle::Sponsors::Theme (class)">Theme</a></span>
     
   
 </p>
@@ -249,12 +249,12 @@ project instead.</p>
       <pre class="lines">
 
 
-35
-36
-37</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/kettle/sponsors.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_kettle_jem_plugin'>register_kettle_jem_plugin</span><span class='lparen'>(</span><span class='id identifier rubyid_registrar'>registrar</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="Sponsors/Plugin.html" title="Kettle::Sponsors::Plugin (module)">Plugin</a></span></span><span class='period'>.</span><span class='id identifier rubyid_register!'><span class='object_link'><a href="Sponsors/Plugin.html#register!-class_method" title="Kettle::Sponsors::Plugin.register! (method)">register!</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_registrar'>registrar</span><span class='rparen'>)</span>
