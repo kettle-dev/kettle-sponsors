@@ -23,6 +23,12 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 `Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and `kettle-family` managed project READMEs.
 
+### Example Output
+
+Generated from a sample sponsor configuration using `kettle-sponsors` (SVGs hosted in `docs/images/` and `docs/images/phone/`, switching automatically at `max-width: 600px`):
+
+<a href="https://acme.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/acme-corp.svg"><img src="docs/images/acme-corp.svg" align="top" alt="Sponsor: Acme Corp - Cloud infrastructure"></picture></a> <a href="https://northwind.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/northwind-labs.svg"><img src="docs/images/northwind-labs.svg" align="top" alt="Sponsor: Northwind Labs - Automated build pipelines and CI runners for open source"></picture></a> <a href="https://beacon.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/beacon-oss.svg"><img src="docs/images/beacon-oss.svg" align="top" alt="Sponsor: Beacon OSS"></picture></a> <picture><source media="(max-width: 600px)" srcset="docs/images/phone/cedar-pine.svg"><img src="docs/images/cedar-pine.svg" align="top" alt="Sponsor: Cedar &amp; Pine"></picture>
+
 Key features:
 
 - **Central hosting by default, local opt-in** — Badges default to the central host (`https://logos.galtzo.com/assets/images/sponsors`) so individual repositories do not need to commit SVG assets. Any sponsor marked `badge: local` is rendered directly into the project (`docs/assets/images/sponsors`).
@@ -158,6 +164,38 @@ readme:
 | `description` | No | `""` | Short tagline rendered on the badge (truncated to 40 characters + `…` on the `phone` variant) and appended to the `alt` attribute. |
 | `badge` | No | `"central"` | Hosting mode: `"central"` serves SVGs from `Kettle::Sponsors::CENTRAL_BASE`; `"local"` renders SVGs into `Kettle::Sponsors::LOCAL_DIR`. |
 
+#### Badge Variations by Field
+
+The sample badges in `docs/images/` were generated from this example configuration:
+
+```yaml
+readme:
+  corporate_sponsors:
+    - name: Acme Corp
+      target_href: https://acme.example
+      since: 2026-01-15
+      description: Cloud infrastructure
+      badge: local
+    - name: Northwind Labs
+      target_href: https://northwind.example
+      since: 2026-06-01
+      description: Automated build pipelines and CI runners for open source
+      badge: local
+    - name: Beacon OSS
+      target_href: https://beacon.example
+      badge: local
+    - name: Cedar & Pine
+      since: 2026-03-01
+      badge: local
+```
+
+| Configuration Variation | Effect on Rendered Badge | Rendered Desktop SVG |
+|-------------------------|--------------------------|----------------------|
+| `name` + `since` + short `description` | 3-line badge (`190×54`): `since YYYY-MM` subtitle and description line | ![Sponsor: Acme Corp - Cloud infrastructure](docs/images/acme-corp.svg) |
+| `name` + `since` + long `description` (`> 40` chars) | Auto-widens on desktop (`364×54`) to fit the full description; truncated with `…` on `phone` | ![Sponsor: Northwind Labs - Automated build pipelines and CI runners for open source](docs/images/northwind-labs.svg) |
+| `name` only (`since` and `description` omitted) | Compact 2-line badge (`190×40`) with `"sponsor"` fallback subtitle | ![Sponsor: Beacon OSS](docs/images/beacon-oss.svg) |
+| `name` (with `&`) + `since`, no `description`, no `target_href` | Compact 2-line badge (`190×40`), XML-escaped name, rendered without an `<a>` wrapper | ![Sponsor: Cedar & Pine](docs/images/cedar-pine.svg) |
+
 #### Supported Config File Formats
 
 `Kettle::Sponsors::Config.load(path)` accepts both `kettle-jem` configs and standalone registry YAML files, looking up the sponsor array in the following order:
@@ -288,6 +326,29 @@ written = Kettle::Sponsors::Renderer.render(sponsors, out: Kettle::Sponsors::LOC
 # Check if output directory is out of date
 stale = Kettle::Sponsors::Renderer.stale?(sponsors, out: Kettle::Sponsors::LOCAL_DIR)
 ```
+
+#### Desktop vs. Phone Variants & Markup Options
+
+`Kettle::Sponsors::BadgeRenderer.svg` supports two variants: `:desktop` (`1.0×` scale) and `:phone` (`0.8×` scale, truncating descriptions longer than 40 characters with `…`). `Kettle::Sponsors::Renderer.render` writes both (`<out>/<slug>.svg` and `<out>/phone/<slug>.svg`):
+
+| Sponsor | `:desktop` (`1.0×`) | `:phone` (`0.8×`, max 40-char description) |
+|---------|---------------------|--------------------------------------------|
+| **Acme Corp** (`190×54` → `152×43`) | ![Acme Corp desktop](docs/images/acme-corp.svg) | ![Acme Corp phone](docs/images/phone/acme-corp.svg) |
+| **Northwind Labs** (`364×54` → `219×43`) | ![Northwind Labs desktop](docs/images/northwind-labs.svg) | ![Northwind Labs phone](docs/images/phone/northwind-labs.svg) |
+| **Beacon OSS** (`190×40` → `152×32`) | ![Beacon OSS desktop](docs/images/beacon-oss.svg) | ![Beacon OSS phone](docs/images/phone/beacon-oss.svg) |
+| **Cedar & Pine** (`190×40` → `152×32`) | ![Cedar & Pine desktop](docs/images/cedar-pine.svg) | ![Cedar & Pine phone](docs/images/phone/cedar-pine.svg) |
+
+`Kettle::Sponsors::Markup.badges` also supports layout and linking variations:
+
+- **`width:` (default `"25%"`)** — Sets the `<img>` `width` attribute so badges concatenated without whitespace tile into columns (e.g., `"25%"` for 4 per row, `"33%"` for 3 per row, or a fixed pixel value like `"190"`):
+
+  ```ruby
+  Kettle::Sponsors::Markup.badges(sponsors, local_base: "docs/images", width: "33%")
+  ```
+
+  <a href="https://acme.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/acme-corp.svg"><img src="docs/images/acme-corp.svg" width="33%" align="top" alt="Sponsor: Acme Corp - Cloud infrastructure"></picture></a><a href="https://beacon.example"><picture><source media="(max-width: 600px)" srcset="docs/images/phone/beacon-oss.svg"><img src="docs/images/beacon-oss.svg" width="33%" align="top" alt="Sponsor: Beacon OSS"></picture></a><picture><source media="(max-width: 600px)" srcset="docs/images/phone/cedar-pine.svg"><img src="docs/images/cedar-pine.svg" width="33%" align="top" alt="Sponsor: Cedar &amp; Pine"></picture>
+
+- **Linked vs. unlinked** — Sponsors with `target_href` (or `url`) render wrapped in `<a href="...">...</a>`; sponsors without one (such as **Cedar & Pine** above) render as a bare `<picture>` element.
 
 #### Publish and Verify Programmatically
 
