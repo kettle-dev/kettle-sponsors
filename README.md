@@ -21,6 +21,19 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
+`Kettle::Sponsors` renders, verifies, and publishes responsive corporate sponsor badges for [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) and `kettle-family` managed project READMEs.
+
+Key features:
+
+- **Central hosting by default, local opt-in** — Badges default to the central host (`https://logos.galtzo.com/assets/images/sponsors`) so individual repositories do not need to commit SVG assets. Any sponsor marked `badge: local` is rendered directly into the project (`docs/assets/images/sponsors`).
+- **Deterministic SVG generation** — Produces desktop and compact mobile (`phone/`) dark-themed SVG badges where identical inputs always produce identical bytes.
+- **Checksum-gated rendering** — Tracks active sponsors with a SHA-256 `.checksum` file, skipping work when nothing changed and pruning SVGs for removed or expired sponsors.
+- **Date-windowed sponsorships** — Supports inclusive `since` and `until` dates so sponsors automatically appear and expire on schedule.
+- **Responsive README markup** — Generates linked `<picture>` elements (`<source media="(max-width: 600px)">` + `<img>`) concatenated without whitespace so badges tile cleanly in a grid.
+- **Central registry publishing** — Merges project or family sponsor definitions into a central YAML registry deterministically and idempotently (`kettle-sponsors publish`).
+- **Opt-in URL verification** — `HEAD`-checks active central badge URLs on demand (`kettle-sponsors --verify`) without making network calls during templating.
+- **`kettle-jem` plugin** — Hooks into `after_phase(:remaining_files)` to keep locally hosted badges up to date during templating.
+
 ## 💡 Info you can shake a stick at
 
 | Tokens to Remember | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace] |
@@ -104,9 +117,190 @@ gem install kettle-sponsors
 
 ## ⚙️ Configuration
 
+### Enabling the `kettle-jem` Plugin
+
+Add `kettle-sponsors` to the `plugins:` list in `.structuredmerge/kettle-jem.yml`:
+
+```yaml
+plugins:
+  - kettle-sponsors
+```
+
+During bundled templating, `kettle-jem` calls `Kettle::Sponsors.register_kettle_jem_plugin(registrar)`, registering an `after_phase(:remaining_files)` hook. For any sponsor configured with `badge: local`, the plugin renders its desktop and phone SVGs into `docs/assets/images/sponsors` and records the generated files with `kettle-jem`. Central badges (`badge: central`, the default) require no local files because they are referenced by URL.
+
+### Defining Sponsors
+
+Define sponsors under `readme.corporate_sponsors` in `.structuredmerge/kettle-jem.yml`:
+
+```yaml
+readme:
+  corporate_sponsors:
+    - name: GitHub
+      target_href: https://github.com
+      since: 2026-08-29
+      description: Copilot Max
+    - name: Example Corp
+      target_href: https://example.com
+      since: 2026-01-01
+      until: 2026-12-31
+      description: Infrastructure partner
+      badge: local
+```
+
+#### Sponsor Entry Fields
+
+| Field | Required | Default | Description |
+|-------|----------|---------|-------------|
+| `name` | Yes | — | Sponsor display name (non-empty). Normalized to a lowercase hyphenated slug; duplicate slugs raise `Kettle::Sponsors::Error`. |
+| `target_href` (alias: `url`) | No | `""` | Destination link URL. When set, must use `http://` or `https://`. When omitted, markup renders `<picture>` without an `<a>` wrapper. |
+| `since` | No | `nil` | First active date (inclusive, ISO 8601 `YYYY-MM-DD`). Displayed on the badge as `since YYYY-MM` (falls back to `sponsor` when omitted). |
+| `until` | No | `nil` | Last active date (inclusive, ISO 8601 `YYYY-MM-DD`). Expired sponsors are excluded from markup, checksums, and verification, and their rendered SVGs are pruned. |
+| `description` | No | `""` | Short tagline rendered on the badge (truncated to 40 characters + `…` on the `phone` variant) and appended to the `alt` attribute. |
+| `badge` | No | `"central"` | Hosting mode: `"central"` serves SVGs from `Kettle::Sponsors::CENTRAL_BASE`; `"local"` renders SVGs into `Kettle::Sponsors::LOCAL_DIR`. |
+
+#### Supported Config File Formats
+
+`Kettle::Sponsors::Config.load(path)` accepts both `kettle-jem` configs and standalone registry YAML files, looking up the sponsor array in the following order:
+
+1. `sponsors` — standalone central registry format (written by `kettle-sponsors publish`)
+2. `readme.corporate_sponsors` — standard `.structuredmerge/kettle-jem.yml` format
+3. `sponsorships.corporate` — alternate nested format
+4. `corporate_sponsors` — top-level shorthand
+
+If `path` does not exist, `Config.load` returns `[]`.
+
+#### Defaults & Constants
+
+| Constant | Default Value | Purpose |
+|----------|---------------|---------|
+| `Kettle::Sponsors::CONFIG_PATH` | `".structuredmerge/kettle-jem.yml"` | Default config path for the CLI and `kettle-jem` plugin. |
+| `Kettle::Sponsors::LOCAL_DIR` | `"docs/assets/images/sponsors"` | Default output directory for locally rendered SVGs and `.checksum`. |
+| `Kettle::Sponsors::CENTRAL_BASE` | `"https://logos.galtzo.com/assets/images/sponsors"` | Base URL for centrally hosted desktop and `phone/` SVGs. |
+| `Kettle::Sponsors::Checksum::FILENAME` | `".checksum"` | File written inside the output directory storing the active-sponsor SHA-256 digest. |
+
 ## 🔧 Basic Usage
 
-TODO: Write usage instructions here
+### Command-Line Interface
+
+The `kettle-sponsors` executable manages rendering, freshness checks, URL verification, and central registry publishing.
+
+#### Render Badges
+
+Render desktop (`<out>/<slug>.svg`) and mobile (`<out>/phone/<slug>.svg`) SVGs for all active sponsors in the config file:
+
+```console
+bundle exec kettle-sponsors
+```
+
+Customize the input config, output directory, or force re-rendering even when `.checksum` is unchanged:
+
+```console
+bundle exec kettle-sponsors --config sponsors.yml --out docs/assets/images/sponsors --force
+```
+
+Stale SVGs from removed or expired sponsors are deleted automatically so the output directory stays in sync with active sponsors.
+
+#### Check Freshness
+
+Verify whether rendered badges match the current active sponsors (useful in CI):
+
+```console
+bundle exec kettle-sponsors --check
+```
+
+Exits `0` (`sponsors unchanged`) when current, or `1` (`sponsors changed`) when stale or missing.
+
+#### Verify Central Badge URLs
+
+Perform an opt-in HTTP `HEAD` check against the desktop and phone SVG URLs for every active central sponsor:
+
+```console
+bundle exec kettle-sponsors --verify
+```
+
+Prints `ok      <url>` or `MISSING <url>` for each badge URL. Exits `0` if all are reachable, or `1` if any are missing or unreachable.
+
+#### Publish to a Central Registry
+
+Merge sponsors from a project or family config into a central registry YAML file (such as the input registry for `logos.galtzo.com`):
+
+```console
+bundle exec kettle-sponsors publish --from .structuredmerge/kettle-jem.yml --registry path/to/sponsors.yml
+```
+
+Entries are merged by slug (incoming wins), registry-only entries are preserved, output is sorted by slug, and `nil`/blank fields and the default `badge: central` are omitted. Repeated runs with no changes are a no-op (`registry unchanged`).
+
+#### CLI Options & Exit Codes
+
+```text
+Usage: kettle-sponsors [options]
+        --config PATH                kettle-jem.yml or registry (default .structuredmerge/kettle-jem.yml)
+        --out DIR                    output directory (default docs/assets/images/sponsors)
+        --check                      exit 1 if badges are stale, 0 if current
+        --verify                     HEAD-check central badge URLs (network)
+        --from PATH                  publish: source config with sponsors
+        --registry PATH              publish: registry file to merge into
+        --force                      render even when unchanged
+```
+
+- Exit `0`: Success (rendered, up to date, all verified URLs reachable, or registry published).
+- Exit `1`: Badges are stale (`--check`) or one or more central URLs failed verification (`--verify`).
+- Exit `2`: Configuration error (`Kettle::Sponsors::Error`) or invalid CLI options.
+
+### Ruby API
+
+#### Load Sponsors and Build README Markup
+
+```ruby
+require "kettle/sponsors"
+
+sponsors = Kettle::Sponsors::Config.load(".structuredmerge/kettle-jem.yml")
+
+# Generate concatenated responsive <a href><picture>...</picture></a> markup for active sponsors
+html = Kettle::Sponsors::Markup.badges(sponsors)
+
+# Override base paths, image width, or evaluation date
+html = Kettle::Sponsors::Markup.badges(
+  sponsors,
+  central_base: Kettle::Sponsors::CENTRAL_BASE,
+  local_base: Kettle::Sponsors::LOCAL_DIR,
+  width: "25%",
+  today: Date.today
+)
+```
+
+Each active sponsor renders as:
+
+```html
+<a href="https://github.com"><picture><source media="(max-width: 600px)" srcset="https://logos.galtzo.com/assets/images/sponsors/phone/github.svg"><img src="https://logos.galtzo.com/assets/images/sponsors/github.svg" width="25%" align="top" alt="Sponsor: GitHub - Copilot Max"></picture></a>
+```
+
+#### Render SVGs Programmatically
+
+```ruby
+# Render a single SVG string (:desktop or :phone)
+desktop_svg = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :desktop)
+phone_svg   = Kettle::Sponsors::BadgeRenderer.svg(sponsors.first, variant: :phone)
+
+# Render active sponsors to disk (returns array of written paths, or [] if unchanged)
+written = Kettle::Sponsors::Renderer.render(sponsors, out: Kettle::Sponsors::LOCAL_DIR)
+
+# Check if output directory is out of date
+stale = Kettle::Sponsors::Renderer.stale?(sponsors, out: Kettle::Sponsors::LOCAL_DIR)
+```
+
+#### Publish and Verify Programmatically
+
+```ruby
+# Merge sponsors into a central registry file (returns true if the file changed)
+changed = Kettle::Sponsors::Registry.publish(
+  from: ".structuredmerge/kettle-jem.yml",
+  registry: "sponsors.yml"
+)
+
+# HEAD-check active central badge URLs (returns Hash{String => Boolean})
+results = Kettle::Sponsors::Verifier.verify(sponsors)
+```
 
 ## 🦷 FLOSS Funding
 
