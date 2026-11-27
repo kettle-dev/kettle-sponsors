@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Completed the user-managed `README.md` sections (`Synopsis`, `Configuration`, and `Basic Usage`) documenting `kettle-jem` plugin setup, sponsor configuration options, CLI usage, and the Ruby API.
+
 ### Security
 
 ## [0.1.0] - 2026-11-26
