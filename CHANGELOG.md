@@ -28,7 +28,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Completed the user-managed `README.md` sections (`Synopsis`, `Configuration`, and `Basic Usage`) documenting `kettle-jem` plugin setup, sponsor configuration options, CLI usage, and the Ruby API.
+- Completed the user-managed `README.md` sections (`Synopsis`, `Configuration`, and `Basic Usage`) documenting `kettle-jem` plugin setup, sponsor configuration options, CLI usage, the Ruby API, and generated SVG badge examples hosted in `docs/images/`.
 
 ### Security
 

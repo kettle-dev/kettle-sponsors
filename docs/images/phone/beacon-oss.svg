@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="152" height="32" viewBox="0 0 152 32" role="img" aria-label="Beacon OSS, sponsor">
+  <rect x=".5" y=".5" width="151" height="31" rx="6" fill="#0d1117" stroke="#30363d"/>
+  <text x="11.2" y="14.4" font-family="system-ui,sans-serif" font-size="11.2" font-weight="700" fill="#f0f6fc">Beacon OSS</text>
+  <text x="11.2" y="25.6" font-family="system-ui,sans-serif" font-size="8" fill="#8b949e">sponsor</text>
+</svg>
